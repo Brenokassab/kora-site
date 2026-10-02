@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kora · Atendente com IA para empresas</title>
+<meta name="description" content="A Kora atende os clientes da sua empresa 24 horas no site e no WhatsApp: responde dúvidas, vende, agenda e consulta pedidos, com o jeito da sua marca.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://SEU-DOMINIO.com.br/">
+<meta name="theme-color" content="#040B11">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Kora">
+<meta property="og:title" content="Kora · Atendente com IA para empresas">
+<meta property="og:description" content="A Kora atende os clientes da sua empresa 24 horas no site e no WhatsApp: responde dúvidas, vende, agenda e consulta pedidos, com o jeito da sua marca.">
+<meta property="og:url" content="https://SEU-DOMINIO.com.br/">
+<meta property="og:image" content="https://SEU-DOMINIO.com.br/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kora · Atendente com IA para empresas">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kora · Atendente com IA para empresas">
+<meta name="twitter:description" content="A Kora atende os clientes da sua empresa 24 horas no site e no WhatsApp: responde dúvidas, vende, agenda e consulta pedidos, com o jeito da sua marca.">
+<meta name="twitter:image" content="https://SEU-DOMINIO.com.br/og-image.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://SEU-DOMINIO.com.br/#org", "name": "Kora", "url": "https://SEU-DOMINIO.com.br/", "logo": "https://SEU-DOMINIO.com.br/apple-touch-icon.png", "email": "brenokojian0@gmail.com", "contactPoint": {"@type": "ContactPoint", "telephone": "+55-11-99660-3491", "contactType": "sales", "areaServed": "BR", "availableLanguage": "Portuguese"}}, {"@type": "WebSite", "@id": "https://SEU-DOMINIO.com.br/#site", "url": "https://SEU-DOMINIO.com.br/", "name": "Kora", "inLanguage": "pt-BR", "publisher": {"@id": "https://SEU-DOMINIO.com.br/#org"}}, {"@type": "Service", "name": "Kora, atendente virtual com IA para empresas", "serviceType": "Atendimento, vendas e agendamento com inteligência artificial", "areaServed": {"@type": "Country", "name": "Brasil"}, "provider": {"@id": "https://SEU-DOMINIO.com.br/#org"}, "offers": [{"@type": "Offer", "name": "Essencial", "price": "149.00", "priceCurrency": "BRL", "description": "Mensalidade. Implantação R$ 790."}, {"@type": "Offer", "name": "Completo", "price": "249.00", "priceCurrency": "BRL", "description": "Mensalidade. Implantação R$ 1.890."}]}]}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: uma jornada contínua de 900vh com palco 3D fixo; capítulos surgem por cima conforme o scroll; depois, uma faixa horizontal e o contato */
+:root{
+  --bg:#040B11; --hull:#0B161E; --ink:#EDF7F3; --muted:#8AA8A2; --line:rgba(237,247,243,.13);
+  --glass:rgba(4,11,17,.6); --accent:#5FE3C0; --accent-ink:#03201A; --warm:#FFB892; --paper:#E9F4EF; --paper-ink:#06201A;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:.98;text-wrap:balance}
+p{margin:0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:20px}
+
+#stage{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0}
+.fx{position:fixed;inset:0;pointer-events:none}
+
+/* casco da nave com a janela */
+#hull{z-index:3;background:var(--hull);
+  -webkit-mask:radial-gradient(circle at var(--cx,50%) var(--cy,50%),transparent var(--r,24vmin),#000 calc(var(--r,24vmin) + 1px));
+          mask:radial-gradient(circle at var(--cx,50%) var(--cy,50%),transparent var(--r,24vmin),#000 calc(var(--r,24vmin) + 1px));}
+#hull::after{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,transparent 0 119px,rgba(237,247,243,.035) 119px 120px),
+  radial-gradient(ellipse at 30% 20%,rgba(95,227,192,.07),transparent 60%)}
+#rim{z-index:4}
+#rim .ring{position:absolute;left:var(--cx,50%);top:var(--cy,50%);transform:translate(-50%,-50%);width:calc(var(--r,24vmin) * 2);height:calc(var(--r,24vmin) * 2);border-radius:50%;
+  box-shadow:0 0 0 14px #13232D,0 0 0 15px rgba(237,247,243,.18),0 0 0 30px #0E1C25,0 0 60px 26px rgba(95,227,192,.12),inset 0 0 50px rgba(0,0,0,.8)}
+#rim .ring::before{content:"";position:absolute;inset:-22px;border-radius:50%;border:3px dotted rgba(237,247,243,.28)}
+
+/* cortina */
+#curtain{z-index:6;overflow:hidden}
+#curtain .sheet{position:absolute;top:-10%;left:-20%;width:140%;height:120%;background:var(--paper);color:var(--paper-ink);
+  transform:translateX(-130%) skewX(-14deg);display:grid;place-items:center}
+#curtain .sheet div{transform:skewX(14deg);text-align:center}
+#curtain b{display:block;font:800 clamp(110px,24vw,340px)/.8 var(--display);letter-spacing:-.06em}
+#curtain span{font:500 14px var(--mono);letter-spacing:.2em;text-transform:uppercase}
+
+/* textos dos capítulos */
+#ovs{z-index:5}
+.ov{position:absolute;inset:0;display:flex;align-items:center;opacity:0;visibility:hidden}
+.ov .wrap{width:100%}
+.ov .box{max-width:520px;pointer-events:auto}
+.ov.r .box{margin-left:auto}
+.ov.c{align-items:flex-end;padding-bottom:9vh}
+.ov.c .box{max-width:760px;margin-inline:auto;text-align:center}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:flex;gap:10px;align-items:center}
+.ov.c .eyebrow{justify-content:center}
+.eyebrow::before{content:"";width:22px;height:1px;background:currentColor}
+.hero h1{font-size:clamp(46px,min(7.6vw,13vh),118px);font-weight:800;letter-spacing:-.055em;margin-block:18px 20px}
+.hero h1 i{font-style:normal;color:transparent;-webkit-text-stroke:1.5px var(--ink)}
+h2{font-size:clamp(38px,5.6vw,76px);font-weight:800;letter-spacing:-.04em;margin-block:16px 18px}
+h2 em{font-style:normal;color:var(--accent)}
+.lede{color:var(--muted);font-size:18px;max-width:40ch}
+.ov.c .lede{margin-inline:auto}
+.hint{margin-top:34px;font:500 12px var(--mono);color:var(--muted);letter-spacing:.14em;display:flex;align-items:center;gap:12px}
+.hint b{width:1px;height:40px;background:linear-gradient(var(--accent),transparent)}
+.chips{display:grid;gap:10px;margin-top:22px}
+.chip{display:flex;gap:14px;align-items:baseline;padding:14px 18px;border:1px solid var(--line);border-radius:14px;background:var(--glass);backdrop-filter:blur(10px)}
+.chip b{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);min-width:64px}
+.chip span{color:var(--ink)}
+.live{display:inline-flex;gap:10px;align-items:center;margin-top:8px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--glass);font:500 13px var(--mono)}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.live output{color:var(--accent);font-variant-numeric:tabular-nums}
+.bub{display:grid;gap:10px;margin-top:22px;max-width:420px}
+.bub div{padding:10px 14px;border-radius:16px;font-size:15px;max-width:84%;opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s}
+.bub div.on{opacity:1;transform:none}
+.bub .o{background:var(--accent);color:var(--accent-ink);justify-self:end;border-top-right-radius:4px}
+.bub .i{background:rgba(237,247,243,.08);border:1px solid var(--line);border-top-left-radius:4px;backdrop-filter:blur(8px)}
+.bub small{display:block;font:500 10px var(--mono);opacity:.6}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font:600 15px var(--body);text-decoration:none;box-shadow:0 0 34px -6px rgba(95,227,192,.7)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.ov.c .actions{justify-content:center}
+
+/* nav + progresso */
+nav{position:fixed;left:0;right:0;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:18px;gap:16px}
+.logo{font:800 24px var(--display);letter-spacing:-.02em;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.logo i{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
+nav{transition:background .3s}nav.solid{background:rgba(4,11,17,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.chap{font:500 12px var(--mono);color:var(--muted);letter-spacing:.12em;font-variant-numeric:tabular-nums;display:flex;gap:14px;align-items:center}
+.chap output{color:var(--ink)}
+.prog{position:fixed;left:0;top:0;height:2px;width:100%;z-index:21;transform-origin:0 50%;transform:scaleX(0);background:var(--accent);box-shadow:0 0 10px var(--accent)}
+
+#journey{height:900vh;position:relative;z-index:1}
+
+/* faixa horizontal */
+.hz{position:relative;z-index:8;height:520vh;background:var(--paper);color:var(--paper-ink)}
+.hz .stick{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:34px}
+.hz .head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.hz .head h2{color:var(--paper-ink);max-width:14ch}
+.hz .head .eyebrow{color:#0B7A63}
+.hz .head p{max-width:34ch;color:#3E5E57}
+.track{display:flex;gap:22px;padding-inline:20px;width:max-content;will-change:transform}
+.card{width:min(380px,78vw);min-height:360px;border-radius:26px;padding:28px;display:flex;flex-direction:column;gap:14px;background:#FFFFFF;border:1px solid #CFE1DA}
+.card.dark{background:var(--paper-ink);color:var(--ink);border-color:var(--paper-ink)}
+.card .n{font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#0B7A63}
+.card.dark .n{color:var(--accent)}
+.card h3{font-size:30px;letter-spacing:-.03em}
+.card p{color:#3E5E57}
+.card.dark p{color:var(--muted)}
+.card .price{margin-top:auto;font:800 40px var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.card .price small{display:block;font:500 13px var(--body);letter-spacing:0;opacity:.7}
+.bar{height:4px;border-radius:4px;background:#CFE1DA;margin-inline:20px;max-width:1200px;overflow:hidden}
+.bar i{display:block;height:100%;width:100%;transform-origin:0 50%;transform:scaleX(0);background:#0B7A63}
+
+.contact{position:relative;z-index:8;background:var(--bg);padding-block:120px 60px;border-top:1px solid var(--line)}
+.contact h2{max-width:16ch}
+.cgrid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end}
+.cgrid > *{min-width:0}
+.cbox{border:1px solid var(--line);border-radius:22px;padding:22px;display:grid;gap:10px;background:rgba(237,247,243,.03)}
+.cbox label{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cbox .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cbox output{font:500 20px var(--mono)}
+.copy{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:6px 12px;font:600 12.5px var(--body);cursor:pointer}
+footer{position:relative;z-index:8;background:var(--bg)}
+footer .wrap{border-top:1px solid var(--line);padding-block:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:14px}
+
+#loader{position:fixed;inset:0;z-index:50;background:var(--bg);display:grid;place-items:center;transition:opacity .8s,visibility .8s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .w{font:800 clamp(56px,12vw,140px)/1 var(--display);letter-spacing:-.05em;text-align:center}
+#loader .w span{color:var(--accent)}
+#loader .pct{font:500 12px var(--mono);letter-spacing:.16em;color:var(--muted);text-align:center;margin-top:10px;font-variant-numeric:tabular-nums}
+
+@media (max-width:860px){
+  .ov{align-items:flex-end;padding-bottom:7vh}
+  .ov .box,.ov.r .box{margin:0;max-width:none;background:var(--glass);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:22px;padding:20px}
+  .hero .box{background:transparent;border:0;backdrop-filter:none;padding:0}
+  .hero{align-items:flex-start;padding-top:14vh}
+  .cgrid{grid-template-columns:1fr}
+  .chap span{display:none}
+}
+@media (prefers-reduced-motion:reduce){.bub div{transition:none}}
+
+/* ---------- widget da Kora ---------- */
+.skip{position:fixed;left:12px;top:-60px;z-index:60;background:var(--accent);color:var(--accent-ink);padding:10px 14px;border-radius:10px;font-weight:600;text-decoration:none}
+.skip:focus{top:12px}
+button.btn{border:0;cursor:pointer;font:600 15px var(--body)}
+button.btn.ghost{border:1px solid var(--line)}
+.kbtn{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;gap:12px;padding:10px 20px 10px 10px;border-radius:999px;border:1px solid rgba(95,227,192,.45);
+  background:rgba(4,11,17,.82);backdrop-filter:blur(14px);color:var(--ink);font:600 15px var(--body);cursor:pointer;box-shadow:0 10px 40px -10px rgba(95,227,192,.55)}
+.kbtn .orb{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#CFFFF1,var(--accent) 45%,#0B6B55);box-shadow:0 0 18px var(--accent);animation:breathe 2.4s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(.9);box-shadow:0 0 30px var(--accent)}}
+.kpanel{position:fixed;right:20px;bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:31;width:390px;max-width:calc(100% - 24px);height:min(600px,calc(100% - 130px));
+  display:flex;flex-direction:column;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:rgba(6,15,22,.95);backdrop-filter:blur(18px);
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.8),0 0 0 1px rgba(95,227,192,.08);transform-origin:bottom right;animation:kin .35s cubic-bezier(.2,.9,.2,1)}
+@keyframes kin{from{opacity:0;transform:translateY(16px) scale(.96)}}
+.kpanel header{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.kpanel header .av{width:38px;height:38px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#CFFFF1,var(--accent) 45%,#0B6B55);display:grid;place-items:center;color:var(--accent-ink);font:800 16px var(--display)}
+.kpanel header strong{display:block;font-size:14.5px;line-height:1.3}
+.kpanel header small{font:500 11.5px var(--mono);color:var(--muted)}
+.kpanel header small.ai{color:var(--accent)}
+.kx{margin-left:auto;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:20px;line-height:1;cursor:pointer;flex:none}
+.klog{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:9px;scroll-behavior:smooth}
+.km{max-width:86%;padding:9px 13px 6px;border-radius:16px;font-size:14.5px;line-height:1.5;white-space:pre-line;overflow-wrap:anywhere}
+.km time{display:block;text-align:right;font:500 10px var(--mono);opacity:.55;margin-top:2px}
+.km.in{align-self:flex-start;background:rgba(237,247,243,.07);border:1px solid var(--line);border-top-left-radius:4px}
+.km.out{align-self:flex-end;background:var(--accent);color:var(--accent-ink);border-top-right-radius:4px}
+.km.note{align-self:center;background:transparent;border:1px dashed var(--line);color:var(--muted);font-size:12.5px;text-align:center}
+.ktyping{display:inline-flex;gap:4px;padding:4px 0}
+.ktyping i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:kb 1s infinite}
+.ktyping i:nth-child(2){animation-delay:.15s}.ktyping i:nth-child(3){animation-delay:.3s}
+@keyframes kb{50%{opacity:.2;transform:translateY(-2px)}}
+.kcard{align-self:stretch;border:1px solid rgba(95,227,192,.45);background:linear-gradient(135deg,rgba(95,227,192,.12),rgba(255,184,146,.06));border-radius:16px;padding:14px 16px;display:grid;gap:4px;font-size:14px}
+.kcard b{font:800 16px var(--display);letter-spacing:-.01em}
+.kcard .row{display:flex;justify-content:space-between;gap:10px;color:var(--muted)}
+.kcard .row span:last-child{color:var(--ink);text-align:right;min-width:0;overflow-wrap:anywhere}
+.kcard code{font:500 12px var(--mono);color:var(--accent)}
+.kchips{display:flex;gap:6px;padding:0 14px 10px;overflow-x:auto;scrollbar-width:none}
+.kchips button{flex:none;border:1px solid rgba(95,227,192,.5);background:transparent;color:var(--accent);font:600 12.5px var(--body);padding:6px 11px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.kchips button:hover{background:rgba(95,227,192,.1)}
+.kform{display:flex;gap:8px;padding:10px 12px 12px;border-top:1px solid var(--line)}
+.kform input{flex:1;min-width:0;border:1px solid var(--line);background:rgba(237,247,243,.05);color:var(--ink);border-radius:999px;padding:11px 16px;font:15px var(--body)}
+.kform input:focus{outline:none;border-color:var(--accent)}
+.kform button{width:44px;height:44px;border-radius:50%;border:0;flex:none;display:grid;place-items:center;cursor:pointer;background:var(--accent);color:var(--accent-ink)}
+.kform button.stop{background:var(--warm)}
+.kfoot{font:500 10.5px var(--mono);color:var(--muted);text-align:center;padding-bottom:10px;letter-spacing:.06em}
+@media (max-width:560px){.kpanel{right:12px;left:12px;width:auto;max-width:none;height:calc(100% - 110px)}.kbtn{right:12px;padding:8px}.kbtn .lbl{display:none}}
+@media (prefers-reduced-motion:reduce){.kbtn .orb,.kpanel,.ktyping i{animation:none}.klog{scroll-behavior:auto}}
+
+.ktabs{display:flex;gap:4px;padding:10px 12px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.ktabs button{flex:none;border:0;background:transparent;color:var(--muted);font:600 12.5px var(--body);padding:7px 12px;border-radius:999px;cursor:pointer}
+.ktabs button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink)}
+.ktabs button:hover:not([aria-selected="true"]){color:var(--ink);background:rgba(237,247,243,.06)}
+.card.seg{min-height:330px}
+.card .ex{font-size:13.5px;color:#5E7E77;margin-top:-4px}
+.btn.small{margin-top:auto;align-self:flex-start;padding:11px 18px;font-size:14px;box-shadow:none;background:var(--paper-ink);color:var(--ink)}
+</style>
+<noscript><style>#loader,#hull,#rim,#curtain,#stage,.kbtn{display:none!important}#ovs,.ov{position:relative!important;opacity:1!important;visibility:visible!important;inset:auto}.ov{padding-block:80px}#journey{height:0}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#contato">Pular para o contato</a>
+<div id="loader" aria-hidden="true"><div><div class="w">Kora<span>.</span></div><div class="pct" id="lp">PREPARANDO A NAVE 000%</div></div></div>
+<canvas id="stage" aria-hidden="true"></canvas>
+<div id="hull" class="fx" aria-hidden="true"></div>
+<div id="rim" class="fx" aria-hidden="true"><div class="ring"></div></div>
+
+<div id="ovs" class="fx">
+  <div class="ov hero" data-a="0" data-b=".07">
+    <div class="wrap"><div class="box">
+      <div class="eyebrow">Inteligência artificial para empresas</div>
+      <h1>Kora.<br><i>Sua empresa</i><br>nunca fecha.</h1>
+      <p class="lede">Uma atendente com IA que responde clientes no site e no WhatsApp, vende, agenda e resolve, com o jeito da sua marca. Role para atravessar a janela.</p>
+      <button class="btn ghost" type="button" data-kora style="margin-top:22px">Testar a Kora agora</button>
+      <div class="hint"><b></b>ROLE PARA DECOLAR</div>
+    </div></div>
+  </div>
+  <div class="ov c" data-a=".12" data-b=".2">
+    <div class="wrap"><div class="box"><div class="eyebrow">Velocidade de resposta</div><h2>Enquanto a concorrência demora horas, <em>a Kora responde em segundos.</em></h2></div></div>
+  </div>
+  <div class="ov" data-a=".28" data-b=".42">
+    <div class="wrap"><div class="box">
+      <div class="eyebrow">Capítulo 03 · Personalização</div>
+      <h2>Ela aprende o <em>DNA</em> da sua empresa.</h2>
+      <p class="lede">Produtos, preços, políticas e o tom de voz da sua marca.</p>
+      <div class="chips"><div class="chip"><b>Vende</b><span>Recomenda produtos e fecha pedidos</span></div><div class="chip"><b>Agenda</b><span>Visitas, reservas, reuniões e consultas</span></div><div class="chip"><b>Resolve</b><span>Pedidos, trocas, prazos e dúvidas</span></div><div class="chip"><b>Qualifica</b><span>Separa curiosos de clientes e avisa a equipe</span></div></div>
+    </div></div>
+  </div>
+  <div class="ov r" data-a=".5" data-b=".6">
+    <div class="wrap"><div class="box">
+      <div class="eyebrow">Capítulo 05 · Tempo</div>
+      <h2>Domingo, feriado, madrugada. <em>Online.</em></h2>
+      <div class="live"><i></i>Agora são <output id="now">--:--</output> e a Kora está atendendo</div>
+      <p class="lede" style="margin-top:18px">O relógio ao lado marca a hora real. A Kora não fecha.</p>
+    </div></div>
+  </div>
+  <div class="ov" data-a=".63" data-b=".72">
+    <div class="wrap"><div class="box">
+      <div class="eyebrow">Capítulo 06 · Conversa</div>
+      <h2>O cliente pergunta. <em>A Kora vende.</em></h2>
+      <div class="bub" id="bub">
+        <div class="o">Oi! Tem o tênis de corrida no 42?<small>22:47</small></div>
+        <div class="i">Tem sim! Restam só 3 pares 👟 Quer que eu separe um?<small>22:47</small></div>
+        <div class="o">Quero!<small>22:48</small></div>
+        <div class="i">Separado ✅ Te mando o link com 5% off no Pix.<small>22:48</small></div>
+      </div>
+    </div></div>
+  </div>
+  <div class="ov c" data-a=".83" data-b="1.1">
+    <div class="wrap"><div class="box">
+      <div class="eyebrow">Capítulo 07 · Crescimento</div>
+      <h2>Mais clientes atendidos. <em>Mais vendas fechadas.</em></h2>
+      <div class="actions"><a class="btn" href="https://wa.me/5511996603491?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Kora%20para%20minha%20empresa." target="_blank" rel="noopener">Quero a Kora →</a><button class="btn ghost" type="button" data-kora>Conversar com a Kora</button></div>
+    </div></div>
+  </div>
+</div>
+
+<div id="curtain" class="fx" aria-hidden="true"><div class="sheet"><div><span>Capítulo 04 · Sem horário comercial</span><b>24/7</b></div></div></div>
+
+<div class="prog" id="prog"></div>
+<nav><div class="wrap"><a class="logo" href="#"><i></i>Kora</a><div class="chap"><span>CAPÍTULO</span><output id="chap">01</output>/ 07</div></div></nav>
+
+<div id="journey"></div>
+
+<section class="hz" id="planos">
+  <div class="stick">
+    <div class="wrap head">
+      <div><div class="eyebrow">Segmentos, como funciona e planos</div><h2>Uma Kora para cada tipo de negócio.</h2></div>
+      <p>Continue rolando: a faixa anda para o lado. Toque em "Testar" para conversar com a Kora de cada segmento.</p>
+    </div>
+    <div class="track" id="track">
+      <div class="card seg"><div class="n">Loja</div><h3>Vende e resolve pedidos</h3><p>Recomenda o produto certo, informa frete e troca e responde onde está o pedido.</p><p class="ex">Exemplo: Passo Certo Calçados</p><button class="btn small" type="button" data-kora data-seg="loja">Testar como loja →</button></div>
+      <div class="card seg"><div class="n">Imobiliária</div><h3>Qualifica e agenda visitas</h3><p>Descobre o que o cliente procura, indica imóveis e marca a visita com o corretor.</p><p class="ex">Exemplo: Morada Nova Imóveis</p><button class="btn small" type="button" data-kora data-seg="imobiliaria">Testar como imobiliária →</button></div>
+      <div class="card seg"><div class="n">Restaurante</div><h3>Reserva mesas e mostra o cardápio</h3><p>Faz reservas com número de pessoas, explica o delivery e indica pratos.</p><p class="ex">Exemplo: Cantina Nonna Rosa</p><button class="btn small" type="button" data-kora data-seg="restaurante">Testar como restaurante →</button></div>
+      <div class="card seg"><div class="n">Clínica</div><h3>Agenda consultas e confirma presença</h3><p>Marca horários, informa convênios e chama a equipe em urgências.</p><p class="ex">Exemplo: Clínica Sorriso Vivo</p><button class="btn small" type="button" data-kora data-seg="clinica">Testar como clínica →</button></div>
+      <div class="card seg"><div class="n">Serviços</div><h3>Qualifica leads e marca reuniões</h3><p>Entende o cliente, explica os planos e agenda a reunião de diagnóstico.</p><p class="ex">Exemplo: Prisma Contabilidade</p><button class="btn small" type="button" data-kora data-seg="servicos">Testar como serviços →</button></div>
+      <div class="card"><div class="n">Passo 1</div><h3>Conversa rápida</h3><p>Levantamos produtos, preços, políticas e as perguntas que seus clientes mais fazem.</p></div>
+      <div class="card"><div class="n">Passo 2</div><h3>A Kora aprende</h3><p>Configuro a Kora com essas informações e o tom da sua marca. Você testa antes de ir ao ar.</p></div>
+      <div class="card"><div class="n">Passo 3</div><h3>No ar</h3><p>Site e WhatsApp oficial, ligada à sua agenda. Todo mês ajusto as respostas com base nas conversas reais.</p></div>
+      <div class="card"><div class="n">Plano</div><h3>Essencial</h3><p>Kora no site respondendo dúvidas, preços e políticas, com aviso para a sua equipe.</p><div class="price">R$ 149<small>por mês · implantação R$ 790</small></div></div>
+      <div class="card dark"><div class="n">Mais escolhido</div><h3>Completo</h3><p>Tudo do Essencial, mais WhatsApp oficial, agendamento automático e consulta de pedidos.</p><div class="price">R$ 249<small>por mês · implantação R$ 1.890</small></div></div>
+      <div class="card"><div class="n">Plano</div><h3>Site + Kora</h3><p>Site novo da empresa com a Kora integrada e o perfil no Google configurado.</p><div class="price">Sob consulta<small>para quem ainda não tem site</small></div></div>
+    </div>
+    <div class="bar"><i id="hbar"></i></div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="wrap cgrid">
+    <div><div class="eyebrow">Contato</div><h2>Quer ver a Kora atendendo a <em>sua</em> empresa?</h2><p class="lede">Monto uma demonstração com os produtos, serviços e preços da sua empresa, sem compromisso.</p></div>
+    <div class="cbox">
+      <label>WhatsApp</label><div class="row"><output id="wa">(11) 99660-3491</output><button class="copy" data-t="wa" type="button">Copiar</button></div>
+      <label>E-mail</label><div class="row"><output id="em">brenokojian0@gmail.com</output><button class="copy" data-t="em" type="button">Copiar</button></div>
+      <a class="btn" href="https://wa.me/5511996603491?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Kora%20para%20minha%20empresa." target="_blank" rel="noopener" style="justify-self:start;margin-top:8px">Chamar no WhatsApp →</a>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap"><span>Kora · Atendimento com IA para empresas</span><span>As empresas da demonstração são fictícias · <a href="/privacidade" style="color:inherit">Privacidade</a></span></div></footer>
+
+<button id="kbtn" class="kbtn" type="button" aria-expanded="false" aria-controls="kpanel"><span class="orb" aria-hidden="true"></span><span class="lbl">Fale com a Kora</span></button>
+<div id="kpanel" class="kpanel" role="dialog" aria-label="Conversa com a Kora" hidden>
+  <header><div class="av" aria-hidden="true">K</div><div><strong id="kname">Kora</strong><small id="kmode">Conectando…</small></div><button class="kx" id="kclose" type="button" aria-label="Fechar conversa">×</button></header>
+  <div id="ktabs" class="ktabs" role="tablist" aria-label="Segmento da demonstração"></div>
+  <div id="klog" class="klog" role="log" aria-live="polite"></div>
+  <div id="kchips" class="kchips"></div>
+  <form id="kform" class="kform"><input id="kin" autocomplete="off" maxlength="600" placeholder="Escreva como um cliente…" aria-label="Sua mensagem">
+    <button id="ksend" type="submit" aria-label="Enviar"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5 21 12 3 3.5l2.8 7.1L15 12l-9.2 1.4z"/></svg></button>
+    <button id="kstop" class="stop" type="button" aria-label="Parar resposta" hidden><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><rect width="14" height="14" rx="2"/></svg></button></form>
+  <p class="kfoot">DEMONSTRAÇÃO · EMPRESAS FICTÍCIAS</p>
+</div>
+<script>
+(function(){
+  const SEGS=[{"aba": "Loja", "nome": "Passo Certo Calçados", "descricao": "loja de tênis e calçados, com site e loja física", "endereco": "Rua Augusta, 1200, Consolação, São Paulo - SP", "horarioTexto": "segunda a sábado, 10h às 20h; domingo, 12h às 18h", "rotuloItens": "Produtos", "itens": [{"nome": "Tênis Corrida Vento", "preco": "R$ 349,90", "detalhes": "numeração 34 a 44, preto ou azul; no 42 restam 3 pares"}, {"nome": "Tênis Casual Urbano", "preco": "R$ 279,90", "detalhes": "numeração 35 a 43, branco ou bege"}, {"nome": "Chuteira Society Arena", "preco": "R$ 229,90", "detalhes": "numeração 36 a 44"}, {"nome": "Tênis Infantil Pulo", "preco": "R$ 169,90", "detalhes": "numeração 24 a 34, com luz de LED"}, {"nome": "Kit 3 Meias Performance", "preco": "R$ 59,90", "detalhes": "tamanho único 38 a 44"}], "informacoes": ["Frete grátis acima de R$ 299 para todo o Brasil; abaixo disso, frete fixo de R$ 19,90.", "Entrega em São Paulo capital em até 2 dias úteis; outras regiões, de 3 a 8 dias úteis.", "Troca grátis em até 30 dias, com o produto sem uso e na caixa.", "Pagamento: Pix com 5% de desconto, cartão em até 6x sem juros ou boleto.", "Retirada grátis na loja física no mesmo dia para compras feitas até 16h."], "regras": ["Ajude a escolher: pergunte para que o cliente vai usar e o número antes de indicar.", "Para finalizar a compra, oriente a comprar pelo site ou ofereça chamar um vendedor."], "agendamento": null, "pedidos": [{"numero": "4821", "status": "Em transporte", "detalhe": "saiu para entrega hoje, previsão até 18h", "itens": "Tênis Corrida Vento 41"}, {"numero": "4855", "status": "Pagamento aprovado", "detalhe": "será enviado em até 1 dia útil", "itens": "Tênis Casual Urbano 38"}, {"numero": "4790", "status": "Entregue", "detalhe": "entregue em 26/09", "itens": "Chuteira Society Arena 40"}], "saudacao": "Oi! Eu sou a Kora, da Passo Certo Calçados 👟\nPosso te ajudar a escolher um tênis, ver seu pedido ou explicar trocas e frete.", "atalhos": ["Quero um tênis de corrida", "Onde está meu pedido?", "Como funciona a troca?", "Frete e prazo", "Falar com vendedor"], "faq": [{"k": "frete|entrega|prazo|chega", "a": "Frete grátis acima de R$ 299 😉 Abaixo disso, R$ 19,90. Em São Paulo capital chega em até 2 dias úteis; nas outras regiões, de 3 a 8."}, {"k": "troca|devolu|trocar|tamanho errado", "a": "A troca é grátis em até 30 dias, com o produto sem uso e na caixa. É só me dizer o número do pedido que eu te passo o passo a passo."}, {"k": "pagamento|pix|cartao|parcel|boleto", "a": "Pix com 5% de desconto, cartão em até 6x sem juros ou boleto."}, {"k": "corrida|correr", "a": "Para corrida, o mais pedido é o Tênis Corrida Vento, R$ 349,90, do 34 ao 44, preto ou azul. No 42 restam só 3 pares! Qual é o seu número?"}, {"k": "retir", "a": "Comprando até 16h, você retira grátis na loja da Rua Augusta no mesmo dia."}], "cartao": ["Vende e resolve pedidos", "Recomenda o produto certo, informa frete e troca e responde onde está o pedido."], "id": "loja", "ficticia": true, "assistente": "Kora", "sobreKora": "Se perguntarem sobre a própria Kora (o produto, quem fez, quanto custa): explique que esta é uma demonstração; a Kora é uma atendente com IA para empresas, que atende no site e no WhatsApp, vende, agenda e tira dúvidas. Planos: Essencial R$ 149/mês + implantação R$ 790; Completo R$ 249/mês + implantação R$ 1.890. Contato: WhatsApp (11) 99660-3491 ou brenokojian0@gmail.com. Se a pessoa quiser a Kora para a empresa dela, peça nome, nome da empresa, ramo e WhatsApp e use registrar_lead com interesse 'Contratar a Kora'; depois diga que a equipe da Kora entra em contato.", "leads": true}, {"aba": "Imobiliária", "nome": "Morada Nova Imóveis", "descricao": "imobiliária de aluguel e venda em São Paulo", "endereco": "Av. Paulista, 1500, conjunto 32, Bela Vista, São Paulo - SP", "horarioTexto": "segunda a sexta, 9h às 18h; sábado, 9h às 13h", "rotuloItens": "Imóveis disponíveis", "itens": [{"nome": "MN-101 · Apartamento 2 dormitórios, 68 m², Vila Mariana", "preco": "aluguel R$ 3.200 + condomínio R$ 780", "detalhes": "1 vaga, a 400 m do metrô"}, {"nome": "MN-102 · Studio mobiliado, 32 m², Pinheiros", "preco": "aluguel R$ 2.600 com condomínio incluso", "detalhes": "prédio com academia e lavanderia"}, {"nome": "MN-103 · Apartamento 1 dormitório, 45 m², Bela Vista", "preco": "aluguel R$ 2.100 + condomínio R$ 520", "detalhes": "aceita pet"}, {"nome": "MN-201 · Apartamento 3 dormitórios, 92 m², Moema", "preco": "venda R$ 1.150.000", "detalhes": "2 vagas, varanda gourmet"}, {"nome": "MN-202 · Casa 3 dormitórios com quintal, 140 m², Santana", "preco": "venda R$ 890.000", "detalhes": "2 vagas, aceita financiamento"}], "informacoes": ["Garantias para aluguel: seguro fiança, título de capitalização ou fiador.", "Documentos para alugar: RG, CPF e comprovante de renda de 3 vezes o valor do aluguel.", "Compra: fazemos simulação de financiamento gratuita com os principais bancos.", "Todas as visitas são acompanhadas por um corretor."], "regras": ["Antes de indicar imóveis, descubra se a pessoa quer comprar ou alugar, a região e o orçamento.", "Ao agendar visita, registre o código do imóvel em detalhes."], "agendamento": {"rotulo": "visita", "tipos": [{"nome": "Visita ao imóvel", "duracaoMin": 45}], "horarios": {"1": ["09:00-18:00"], "2": ["09:00-18:00"], "3": ["09:00-18:00"], "4": ["09:00-18:00"], "5": ["09:00-18:00"], "6": ["09:00-13:00"]}, "intervaloMin": 60, "antecedenciaMinHoras": 3, "diasAgenda": 14, "detalhe": "Qual imóvel você quer visitar? Pode mandar o código, como MN-101."}, "saudacao": "Olá! Eu sou a Kora, da Morada Nova Imóveis 🏡\nVocê procura imóvel para comprar ou para alugar?", "atalhos": ["Quero alugar", "Quero comprar", "Agendar visita", "Documentos para alugar", "Falar com corretor"], "faq": [{"k": "document|papel|precis", "a": "Para alugar você precisa de RG, CPF e comprovante de renda de 3 vezes o valor do aluguel. Aceitamos seguro fiança, título de capitalização ou fiador."}, {"k": "financ|banco|simula", "a": "Fazemos a simulação de financiamento gratuita com os principais bancos. Quer agendar uma visita e já conversar com o corretor sobre isso?"}, {"k": "pet|cachorro|gato", "a": "O MN-103, na Bela Vista, aceita pet: 1 dormitório, 45 m², aluguel R$ 2.100 + condomínio R$ 520."}, {"k": "alug", "a": "Para alugar, tenho:\n• MN-101 · 2 dorm., Vila Mariana · R$ 3.200 + cond.\n• MN-102 · Studio mobiliado, Pinheiros · R$ 2.600\n• MN-103 · 1 dorm., Bela Vista, aceita pet · R$ 2.100 + cond.\nQuer agendar uma visita?"}, {"k": "compr|venda", "a": "À venda, tenho:\n• MN-201 · 3 dorm., 92 m², Moema · R$ 1.150.000\n• MN-202 · Casa 3 dorm., Santana · R$ 890.000\nQuer agendar uma visita?"}], "cartao": ["Qualifica e agenda visitas", "Descobre o que o cliente procura, indica imóveis e marca a visita com o corretor."], "id": "imobiliaria", "ficticia": true, "assistente": "Kora", "sobreKora": "Se perguntarem sobre a própria Kora (o produto, quem fez, quanto custa): explique que esta é uma demonstração; a Kora é uma atendente com IA para empresas, que atende no site e no WhatsApp, vende, agenda e tira dúvidas. Planos: Essencial R$ 149/mês + implantação R$ 790; Completo R$ 249/mês + implantação R$ 1.890. Contato: WhatsApp (11) 99660-3491 ou brenokojian0@gmail.com. Se a pessoa quiser a Kora para a empresa dela, peça nome, nome da empresa, ramo e WhatsApp e use registrar_lead com interesse 'Contratar a Kora'; depois diga que a equipe da Kora entra em contato.", "leads": true, "pedidos": null}, {"aba": "Restaurante", "nome": "Cantina Nonna Rosa", "descricao": "cantina italiana com salão e delivery", "endereco": "Rua Treze de Maio, 800, Bela Vista, São Paulo - SP", "horarioTexto": "terça a domingo, almoço 12h às 15h e jantar 19h às 23h; segunda fechado", "rotuloItens": "Cardápio", "itens": [{"nome": "Menu executivo (almoço, terça a sexta)", "preco": "R$ 49", "detalhes": "entrada, prato e sobremesa"}, {"nome": "Lasanha à bolonhesa", "preco": "R$ 68"}, {"nome": "Nhoque ao sugo", "preco": "R$ 59", "detalhes": "versão sem glúten sob encomenda"}, {"nome": "Spaghetti à carbonara", "preco": "R$ 64"}, {"nome": "Pizza margherita individual", "preco": "R$ 52", "detalhes": "opção vegetariana"}, {"nome": "Tiramisù", "preco": "R$ 32"}], "informacoes": ["Delivery pelo WhatsApp e pelos aplicativos de entrega, das 19h às 22h30, com taxa a partir de R$ 8.", "Mesas para até 12 pessoas; grupos maiores falam com o gerente.", "Manobrista: R$ 25.", "Aniversariante do dia ganha uma sobremesa.", "Opções vegetarianas e sem glúten indicadas no cardápio."], "regras": ["Ao reservar, pergunte para quantas pessoas e registre em detalhes.", "Grupos com mais de 12 pessoas: chame o atendente."], "agendamento": {"rotulo": "reserva", "tipos": [{"nome": "Reserva de mesa", "duracaoMin": 120}], "horarios": {"2": ["12:00-15:00", "19:00-23:00"], "3": ["12:00-15:00", "19:00-23:00"], "4": ["12:00-15:00", "19:00-23:00"], "5": ["12:00-15:00", "19:00-23:00"], "6": ["12:00-15:00", "19:00-23:00"], "0": ["12:00-15:00", "19:00-23:00"]}, "intervaloMin": 30, "antecedenciaMinHoras": 1, "diasAgenda": 14, "detalhe": "Para quantas pessoas é a reserva?"}, "saudacao": "Buonasera! Eu sou a Kora, da Cantina Nonna Rosa 🍝\nPosso reservar sua mesa, mostrar o cardápio ou explicar o delivery.", "atalhos": ["Reservar mesa", "Ver cardápio", "Delivery", "Tem opção sem glúten?", "Falar com o gerente"], "faq": [{"k": "delivery|entrega|pedir em casa|ifood", "a": "Fazemos delivery pelo WhatsApp e pelos aplicativos, das 19h às 22h30, com taxa a partir de R$ 8 🛵"}, {"k": "gluten|celiac", "a": "Temos nhoque sem glúten sob encomenda. Avise na reserva que a cozinha prepara com cuidado 💚"}, {"k": "vegetar|vegan", "a": "Temos opções vegetarianas, como a pizza margherita e o nhoque ao sugo."}, {"k": "aniversar", "a": "Aniversariante do dia ganha uma sobremesa 🎂 Quer reservar a mesa?"}, {"k": "estacion|manobr", "a": "Temos manobrista por R$ 25."}], "cartao": ["Reserva mesas e mostra o cardápio", "Faz reservas com número de pessoas, explica o delivery e indica pratos."], "id": "restaurante", "ficticia": true, "assistente": "Kora", "sobreKora": "Se perguntarem sobre a própria Kora (o produto, quem fez, quanto custa): explique que esta é uma demonstração; a Kora é uma atendente com IA para empresas, que atende no site e no WhatsApp, vende, agenda e tira dúvidas. Planos: Essencial R$ 149/mês + implantação R$ 790; Completo R$ 249/mês + implantação R$ 1.890. Contato: WhatsApp (11) 99660-3491 ou brenokojian0@gmail.com. Se a pessoa quiser a Kora para a empresa dela, peça nome, nome da empresa, ramo e WhatsApp e use registrar_lead com interesse 'Contratar a Kora'; depois diga que a equipe da Kora entra em contato.", "leads": true, "pedidos": null}, {"aba": "Clínica", "nome": "Clínica Sorriso Vivo", "descricao": "clínica odontológica", "endereco": "Rua das Acácias, 250, sala 12, Vila Mariana, São Paulo - SP", "horarioTexto": "segunda a sexta, 8h às 19h; sábado, 8h às 12h", "rotuloItens": "Serviços", "itens": [{"nome": "Avaliação", "preco": "R$ 120, abatido se fizer o tratamento"}, {"nome": "Limpeza", "preco": "R$ 180"}, {"nome": "Clareamento", "preco": "a partir de R$ 690"}, {"nome": "Restauração", "preco": "a partir de R$ 220"}, {"nome": "Tratamento de canal", "preco": "a partir de R$ 850"}], "informacoes": ["Convênios: Amil Dental, Bradesco Dental e OdontoPrev; outros planos, reembolso com nota fiscal.", "Pagamento: Pix, débito e crédito em até 10x sem juros.", "Avaliação e limpeza não exigem preparo."], "regras": ["Nunca dê diagnóstico, receita ou orientação clínica.", "Em dor forte, sangramento, inchaço ou trauma: acolha, oriente pronto-atendimento se for grave e chame o atendente como urgente."], "agendamento": {"rotulo": "consulta", "tipos": [{"nome": "Avaliação", "duracaoMin": 30}, {"nome": "Limpeza", "duracaoMin": 60}, {"nome": "Clareamento", "duracaoMin": 60}, {"nome": "Restauração", "duracaoMin": 60}, {"nome": "Tratamento de canal", "duracaoMin": 90}], "horarios": {"1": ["08:00-12:00", "14:00-19:00"], "2": ["08:00-12:00", "14:00-19:00"], "3": ["08:00-12:00", "14:00-19:00"], "4": ["08:00-12:00", "14:00-19:00"], "5": ["08:00-12:00", "14:00-19:00"], "6": ["08:00-12:00"]}, "intervaloMin": 30, "antecedenciaMinHoras": 2, "diasAgenda": 14}, "saudacao": "Olá! Eu sou a Kora, da Clínica Sorriso Vivo 😁\nPosso agendar sua consulta, informar valores e convênios.", "atalhos": ["Agendar consulta", "Valores", "Convênios", "Endereço", "Falar com atendente"], "faq": [{"k": "conven|plano|amil|bradesco|odonto|unimed", "a": "Atendemos Amil Dental, Bradesco Dental e OdontoPrev. Outros planos: reembolso com nota fiscal."}, {"k": "pagamento|pix|cartao|parcel", "a": "Aceitamos Pix, débito e crédito em até 10x sem juros."}, {"k": "dor|sangr|inchad|urgen|quebr", "a": "!urgente"}], "cartao": ["Agenda consultas e confirma presença", "Marca horários, informa convênios e chama a equipe em urgências."], "id": "clinica", "ficticia": true, "assistente": "Kora", "sobreKora": "Se perguntarem sobre a própria Kora (o produto, quem fez, quanto custa): explique que esta é uma demonstração; a Kora é uma atendente com IA para empresas, que atende no site e no WhatsApp, vende, agenda e tira dúvidas. Planos: Essencial R$ 149/mês + implantação R$ 790; Completo R$ 249/mês + implantação R$ 1.890. Contato: WhatsApp (11) 99660-3491 ou brenokojian0@gmail.com. Se a pessoa quiser a Kora para a empresa dela, peça nome, nome da empresa, ramo e WhatsApp e use registrar_lead com interesse 'Contratar a Kora'; depois diga que a equipe da Kora entra em contato.", "leads": true, "pedidos": null}, {"aba": "Serviços", "nome": "Prisma Contabilidade", "descricao": "escritório de contabilidade digital para MEI e pequenas empresas", "endereco": "atendimento 100% online; sede na Rua Vergueiro, 3000, Vila Mariana, São Paulo - SP", "horarioTexto": "segunda a sexta, 9h às 18h", "rotuloItens": "Serviços e planos", "itens": [{"nome": "Contabilidade para MEI", "preco": "R$ 89/mês", "detalhes": "DAS, declaração anual e suporte"}, {"nome": "Contabilidade Simples Nacional (serviços)", "preco": "a partir de R$ 390/mês", "detalhes": "depende do faturamento e do número de funcionários"}, {"nome": "Abertura de empresa", "preco": "R$ 890, grátis ao contratar o plano anual"}, {"nome": "Declaração de Imposto de Renda (pessoa física)", "preco": "a partir de R$ 250"}, {"nome": "Troca de contador", "preco": "gratuita, cuidamos de toda a transição"}], "informacoes": ["Primeira reunião de diagnóstico gratuita, por vídeo, com 30 minutos.", "Atendemos empresas de todo o Brasil.", "Pagamento por boleto ou Pix, todo mês."], "regras": ["Não dê parecer tributário definitivo; para casos específicos, ofereça a reunião de diagnóstico.", "Qualifique: pergunte se a pessoa já tem empresa, o tipo (MEI, ME) e o ramo."], "agendamento": {"rotulo": "reunião", "tipos": [{"nome": "Reunião de diagnóstico (gratuita, por vídeo)", "duracaoMin": 30}], "horarios": {"1": ["09:00-12:00", "14:00-18:00"], "2": ["09:00-12:00", "14:00-18:00"], "3": ["09:00-12:00", "14:00-18:00"], "4": ["09:00-12:00", "14:00-18:00"], "5": ["09:00-12:00", "14:00-18:00"]}, "intervaloMin": 30, "antecedenciaMinHoras": 2, "diasAgenda": 14}, "saudacao": "Olá! Eu sou a Kora, da Prisma Contabilidade 📊\nVocê já tem empresa ou quer abrir uma?", "atalhos": ["Quero abrir uma empresa", "Sou MEI", "Trocar de contador", "Agendar reunião", "Falar com um contador"], "faq": [{"k": "abrir|abertura", "a": "A abertura custa R$ 890 e sai grátis se você contratar o plano anual. Quer agendar uma reunião de diagnóstico gratuita para ver o melhor formato para você?"}, {"k": "\\bmei\\b|microempreendedor", "a": "Para MEI a contabilidade é R$ 89/mês, com DAS, declaração anual e suporte. Quer começar?"}, {"k": "trocar|troca de contador|mudar de contador", "a": "A troca de contador é gratuita e a gente cuida de toda a transição com o contador atual. Quer agendar uma reunião rápida?"}, {"k": "imposto de renda|irpf|declara", "a": "A declaração de Imposto de Renda de pessoa física sai a partir de R$ 250."}], "cartao": ["Qualifica leads e marca reuniões", "Entende o cliente, explica os planos e agenda a reunião de diagnóstico."], "id": "servicos", "ficticia": true, "assistente": "Kora", "sobreKora": "Se perguntarem sobre a própria Kora (o produto, quem fez, quanto custa): explique que esta é uma demonstração; a Kora é uma atendente com IA para empresas, que atende no site e no WhatsApp, vende, agenda e tira dúvidas. Planos: Essencial R$ 149/mês + implantação R$ 790; Completo R$ 249/mês + implantação R$ 1.890. Contato: WhatsApp (11) 99660-3491 ou brenokojian0@gmail.com. Se a pessoa quiser a Kora para a empresa dela, peça nome, nome da empresa, ramo e WhatsApp e use registrar_lead com interesse 'Contratar a Kora'; depois diga que a equipe da Kora entra em contato.", "leads": true, "pedidos": null}];
+  const $=id=>document.getElementById(id);
+  const btn=$('kbtn'),panel=$('kpanel'),log=$('klog'),chipsEl=$('kchips'),tabsEl=$('ktabs'),form=$('kform'),inp=$('kin'),sendB=$('ksend'),stopB=$('kstop'),modeEl=$('kmode'),nameEl=$('kname');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const norm=t=>String(t||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim();
+  const pad=n=>String(n).padStart(2,'0');
+  const hhmmNow=()=>{const d=new Date();return pad(d.getHours())+':'+pad(d.getMinutes())};
+  const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+  const WD=['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
+
+  /* ---------- agenda local (usada no modo demonstração e pela IA do artifact) ---------- */
+  const ymd=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+  const labelOf=d=>WD[d.getDay()]+' '+pad(d.getDate())+'/'+pad(d.getMonth()+1);
+  const toMin=h=>{const[a,b]=h.split(':').map(Number);return a*60+b};
+  const fmt=m=>pad(Math.floor(m/60))+':'+pad(m%60);
+  const state={};
+  SEGS.forEach(s=>{state[s.id]={seg:s,turns:[],busy:{},st:{step:null}};});
+  function segDays(seg){
+    const A=seg.agendamento,out=[],t=new Date();
+    for(let i=0;i<(A?A.diasAgenda:14);i++){const d=new Date(t.getFullYear(),t.getMonth(),t.getDate()+i,12);out.push({date:ymd(d),weekday:d.getDay(),label:labelOf(d),d});}
+    return out;
+  }
+  function busyOf(seg,date){
+    const S=state[seg.id];
+    if(!S.busy[date]){
+      S.busy[date]=[];
+      const i=segDays(seg).findIndex(x=>x.date===date),day=segDays(seg)[i];
+      if(day&&seg.agendamento)(seg.agendamento.horarios[String(day.weekday)]||[]).forEach((r,j)=>{const a=toMin(r.split('-')[0])+((i+j)%3)*60;S.busy[date].push([a,a+60]);});
+    }
+    return S.busy[date];
+  }
+  function findTipo(seg,name){const A=seg.agendamento;if(!A)return null;const n=norm(name);
+    return A.tipos.find(t=>norm(t.nome)===n)||A.tipos.find(t=>n&&(n.includes(norm(t.nome).split(' ')[0])||norm(t.nome).includes(n)))||null;}
+  function freeTimes(seg,day,tipo){
+    const A=seg.agendamento;if(!A)return[];const dur=(tipo&&tipo.duracaoMin)||60,step=A.intervaloMin||30;
+    const now=new Date(),lead=now.getTime()+(A.antecedenciaMinHoras||0)*3600000,busy=busyOf(seg,day.date),out=[];
+    (A.horarios[String(day.weekday)]||[]).forEach(r=>{const[a,b]=r.split('-').map(toMin);
+      for(let m=a;m+dur<=b;m+=step){const start=new Date(day.d.getFullYear(),day.d.getMonth(),day.d.getDate(),Math.floor(m/60),m%60).getTime();
+        if(start>lead&&!busy.some(([x,y])=>m<y&&m+dur>x))out.push(fmt(m));}});
+    return out;
+  }
+  function findDay(seg,s){
+    const t=norm(s),all=segDays(seg);if(!t)return null;
+    if(/^\d{4}-\d{2}-\d{2}/.test(t))return all.find(d=>d.date===t.slice(0,10))||null;
+    if(t.includes('hoje'))return all[0];
+    if(t.includes('amanha'))return all[1];
+    const m=t.match(/(\d{1,2})\/(\d{1,2})/);if(m)return all.find(d=>d.d.getDate()===+m[1]&&d.d.getMonth()+1===+m[2])||null;
+    const names=['dom','seg','ter','qua','qui','sex','sab'];
+    return all.find(d=>t.includes(names[d.weekday]))||null;
+  }
+  const normTime=s=>{const m=String(s).match(/(\d{1,2})[:h]?(\d{2})?/);return m?pad(+m[1])+':'+(m[2]||'00'):''};
+
+  // ações (renderizam o cartão na conversa)
+  function listar(seg,{tipo,data}={}){
+    const A=seg.agendamento;if(!A)throw new Error('Esta empresa não trabalha com agendamento.');
+    const tp=findTipo(seg,tipo)||A.tipos[0];
+    if(data){const day=findDay(seg,data);if(!day)return{erro:'Data fora da agenda'};return{tipo:tp.nome,data:day.date,dia:day.label,livres:freeTimes(seg,day,tp).slice(0,12)};}
+    const dias=[];for(const d of segDays(seg)){const l=freeTimes(seg,d,tp);if(l.length)dias.push({data:d.date,dia:d.label,livres:l.slice(0,8)});if(dias.length>=5)break;}
+    return{tipo:tp.nome,dias};
+  }
+  function book(seg,{nome,tipo,data,horario,detalhes,telefone}){
+    const A=seg.agendamento;if(!A)throw new Error('Sem agendamento.');
+    nome=String(nome||'').trim();if(nome.length<2)throw new Error('Falta o nome.');
+    const tp=findTipo(seg,tipo)||A.tipos[0],day=findDay(seg,String(data||''));
+    if(!day)throw new Error('Data fora da agenda. Use AAAA-MM-DD.');
+    const hh=normTime(horario);if(!freeTimes(seg,day,tp).includes(hh))throw new Error('Horário '+hh+' indisponível em '+day.label+'. Livres: '+(freeTimes(seg,day,tp).slice(0,6).join(', ')||'nenhum'));
+    busyOf(seg,day.date).push([toMin(hh),toMin(hh)+(tp.duracaoMin||60)]);
+    const r={ok:true,protocolo:'K'+Math.random().toString(36).slice(2,7).toUpperCase(),nome,telefone:telefone||'',tipo:tp.nome,data:day.date,dia:day.label,horario:hh,detalhes:detalhes?String(detalhes).slice(0,120):'',rotulo:A.rotulo};
+    renderEvents([{type:'booking',data:r}]);return r;
+  }
+  function pedido(seg,numero){
+    const n=String(numero||'').replace(/\D/g,'');const p=(seg.pedidos||[]).find(x=>x.numero===n);
+    if(!p)return{encontrado:false,numero:n,dica:'Pedidos de demonstração: '+(seg.pedidos||[]).map(x=>x.numero).join(', ')};
+    renderEvents([{type:'order',data:p}]);return{encontrado:true,...p};
+  }
+  function lead(seg,i){const d={nome:String(i.nome||'').slice(0,80),empresa:String(i.empresa||'').slice(0,80),interesse:String(i.interesse||'').slice(0,200),whatsapp:String(i.whatsapp||'').slice(0,30)};if(!d.nome)throw new Error('Falta o nome.');renderEvents([{type:'lead',data:d}]);return{ok:true,mensagem:'Contato registrado. A equipe vai retornar.'};}
+  function human(seg,resumo,urgente){const d={resumo:String(resumo||'Cliente pediu atendimento humano').slice(0,300),urgente:!!urgente};renderEvents([{type:'handoff',data:d}]);return{ok:true};}
+
+  /* ---------- interface ---------- */
+  const clean=t=>String(t).replace(/\*\*(.+?)\*\*/g,'$1').replace(/^#+\s*/gm,'').replace(/^\s*[-*]\s+/gm,'• ');
+  function addMsg(text,who){
+    const m=document.createElement('div');m.className='km '+who;const b=document.createElement('span');b.textContent=clean(text);m.appendChild(b);
+    if(who!=='note'){const tm=document.createElement('time');tm.textContent=hhmmNow();m.appendChild(tm);}
+    log.appendChild(m);log.scrollTop=log.scrollHeight;return m;
+  }
+  function setBubble(m,text){m.firstChild.textContent=clean(text);log.scrollTop=log.scrollHeight;}
+  function typing(){const m=document.createElement('div');m.className='km in';m.innerHTML='<span><span class="ktyping"><i></i><i></i><i></i></span></span><time></time>';m.lastChild.textContent=hhmmNow();log.appendChild(m);log.scrollTop=log.scrollHeight;return m;}
+  function card(title,rows,code){
+    const c=document.createElement('div');c.className='kcard';const b=document.createElement('b');b.textContent=title;c.appendChild(b);
+    rows.filter(r=>r[1]).forEach(([k,v])=>{const r=document.createElement('div');r.className='row';const a=document.createElement('span'),z=document.createElement('span');a.textContent=k;z.textContent=v;r.append(a,z);c.appendChild(r)});
+    if(code){const cd=document.createElement('code');cd.textContent='Protocolo '+code;c.appendChild(cd);}
+    log.appendChild(c);log.scrollTop=log.scrollHeight;
+  }
+  function renderEvents(evs){
+    (evs||[]).forEach(ev=>{const d=ev.data||{};
+      if(ev.type==='booking'){const rot=d.rotulo||'agendamento';card(cap(rot)+(rot==='reserva'?' confirmada ✅':' agendada ✅'),[['Nome',d.nome||d.paciente],['Tipo',d.tipo||d.servico],['Quando',(d.dia||'')+' às '+(d.horario||'')],['Detalhes',d.detalhes]],d.protocolo);}
+      else if(ev.type==='order'){card('Pedido '+d.numero+' 📦',[['Status',d.status],['Situação',d.detalhe],['Itens',d.itens]]);}
+      else if(ev.type==='lead'){card('Contato registrado ✅',[['Nome',d.nome],['Empresa',d.empresa],['Interesse',d.interesse],['Retorno','a equipe vai te chamar']]);}
+      else if(ev.type==='handoff'){card(d.urgente?'Equipe avisada com urgência 🚨':'Equipe avisada 🙋',[['Resumo',d.resumo],['Retorno','em horário comercial']]);}
+    });
+  }
+  function chips(list){chipsEl.innerHTML='';(list||[]).forEach(l=>{const b=document.createElement('button');b.type='button';b.textContent=l;b.onclick=()=>submit(l);chipsEl.appendChild(b)});}
+  let mode='demo';
+  function setMode(m){mode=m;modeEl.className=m==='ai'?'ai':'';modeEl.textContent=m==='ai'?'● IA ao vivo':'● Modo demonstração';}
+
+  /* ---------- troca de segmento ---------- */
+  let curId=SEGS[0].id,busy=false,ctl=null;
+  const cur=()=>state[curId];
+  SEGS.forEach(s=>{const b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.id='ktab-'+s.id;b.textContent=s.aba;b.setAttribute('aria-selected',s.id===curId?'true':'false');b.onclick=()=>switchSeg(s.id);tabsEl.appendChild(b);});
+  function switchSeg(id,force){
+    if(id===curId&&!force&&log.childNodes.length)return;
+    if(ctl)ctl.abort();busy=false;sendB.hidden=false;stopB.hidden=true;
+    curId=id;const S=cur();S.turns=[];S.st={step:null};
+    tabsEl.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',b.id==='ktab-'+id?'true':'false'));
+    nameEl.textContent='Kora · '+S.seg.nome;log.innerHTML='';
+    addMsg('Demonstração: '+S.seg.nome+', '+S.seg.descricao+' (empresa fictícia).','note');
+    addMsg(S.seg.saudacao,'in');chips(S.seg.atalhos);
+  }
+
+  /* ---------- modo demonstração (roteiro) ---------- */
+  function say(lines,next){
+    const arr=Array.isArray(lines)?lines:[lines],id=curId;busy=true;chips([]);let i=0;
+    (function one(){const tp=typing();setTimeout(()=>{tp.remove();if(id!==curId)return;const l=arr[i++];typeof l==='function'?l():addMsg(l,'in');
+      if(i<arr.length)one();else{busy=false;chips(next||cur().seg.atalhos)}},reduce?40:500+Math.min(String(arr[i]).length*4,650));})();
+  }
+  function askDay(){
+    const S=cur(),seg=S.seg,opts=segDays(seg).filter(d=>freeTimes(seg,d,S.st.tipo).length).slice(0,4);
+    S.st.step='dia';
+    if(!opts.length)return say('A agenda dos próximos dias está cheia 😕 Quer que eu chame alguém da equipe?',['Falar com atendente']);
+    return say('Qual dia fica melhor?',opts.map(d=>d.label));
+  }
+  function detailChips(seg){
+    if(seg.id==='imobiliaria')return seg.itens.map(i=>i.nome.split(' ·')[0]);
+    if(/pessoas/.test(seg.agendamento.detalhe||''))return['2 pessoas','4 pessoas','6 pessoas'];
+    return[];
+  }
+  function listItens(seg){return seg.rotuloItens+':\n'+seg.itens.map(i=>'• '+i.nome+': '+i.preco).join('\n');}
+  function fallback(raw){
+    const S=cur(),seg=S.seg,st=S.st,A=seg.agendamento,t=norm(raw);
+    // passos em andamento
+    if(st.step==='pedido'){const m=raw.match(/\d{3,6}/);if(!m)return say('Me manda só o número do pedido, por favor. Ex.: 4821',[]);st.step=null;return pedidoReply(m[0]);}
+    if(st.step==='tipo'){st.tipo=findTipo(seg,raw)||A.tipos[0];if(A.detalhe){st.step='detalhe';return say(A.detalhe,detailChips(seg));}return askDay();}
+    if(st.step==='detalhe'){st.detalhes=raw.trim();return askDay();}
+    if(st.step==='dia'){const d=findDay(seg,raw);if(!d||!freeTimes(seg,d,st.tipo).length)return askDay();
+      st.day=d;st.step='hora';return say('Horários livres em '+d.label+':',freeTimes(seg,d,st.tipo).slice(0,6));}
+    if(st.step==='hora'){const h=normTime(raw);if(!freeTimes(seg,st.day,st.tipo).includes(h))return say('Esse horário não está livre. Escolha um destes:',freeTimes(seg,st.day,st.tipo).slice(0,6));
+      st.hora=h;st.step='nome';return say('Perfeito! Qual é o seu nome completo?',[]);}
+    if(st.step==='nome'){const nome=raw.trim(),s=st;S.st={step:null};
+      return say([()=>{try{book(seg,{nome,tipo:s.tipo.nome,data:s.day.date,horario:s.hora,detalhes:s.detalhes})}catch(e){addMsg('Ops, esse horário acabou de ser ocupado. Vamos escolher outro?','in')}},
+        'Prontinho, '+nome.split(' ')[0]+'! Te mando um lembrete antes. Posso ajudar em algo mais?']);}
+    // urgência
+    const urg=(seg.faq||[]).find(f=>f.a==='!urgente'&&new RegExp(f.k).test(t));
+    if(urg)return say(['Sinto muito que esteja passando por isso.',()=>human(seg,'Possível urgência: "'+raw.slice(0,90)+'"',true),'Já avisei a equipe. Se for grave, procure um pronto-atendimento.']);
+    // pedidos
+    if(seg.pedidos&&/pedido|rastre|onde esta|cade|chegou|entregue|compra/.test(t)){const m=raw.match(/\d{3,6}/);if(m)return pedidoReply(m[0]);st.step='pedido';return say('Claro! Qual é o número do pedido?',seg.pedidos.map(p=>p.numero));}
+    // agendamento
+    if(A&&/agend|marcar|reserv|visita|reuni|mesa|consulta|horarios? (livre|disponive)|disponibilidade/.test(t)){
+      S.st={step:null};const tp=findTipo(seg,raw);
+      if(A.tipos.length>1&&!tp){S.st.step='tipo';return say('Vamos lá! Qual '+A.rotulo+' você quer marcar?',A.tipos.map(x=>x.nome));}
+      S.st.tipo=tp||A.tipos[0];
+      if(A.detalhe){S.st.step='detalhe';return say(A.detalhe,detailChips(seg));}
+      return askDay();
+    }
+    // perguntas frequentes da empresa
+    const f=(seg.faq||[]).find(f=>f.a!=='!urgente'&&new RegExp(f.k).test(t));if(f)return say(f.a);
+    if(/ender|onde fica|localiza|como chego|funciona|abre|fecha|horario de/.test(t))return say('📍 '+seg.endereco+'\n🕗 '+cap(seg.horarioTexto)+'.');
+    if(/valor|preco|quanto|custa|cardapio|menu|produto|modelo|imove|apartamento|casa|servic|plano|opcoes|catalogo|ver o|mostra/.test(t))return say(listItens(seg));
+    if(/atendente|humano|pessoa|vendedor|corretor|gerente|contador|falar com|equipe/.test(t))return say([()=>human(seg,'Cliente pediu para falar com a equipe'),'Pronto! Alguém da equipe vai te responder aqui em horário comercial.']);
+    if(/contratar|quero (a|uma) kora|kora (pra|para) (minha|meu)|quanto custa a kora|preco da kora|planos? da kora/.test(t))return say('Que bom! A Kora custa a partir de R$ 149/mês + implantação. Chame a gente no WhatsApp (11) 99660-3491 ou escreva para brenokojian0@gmail.com e montamos uma demonstração com os dados da sua empresa.');
+    if(/kora|quem (fez|criou)|robo|\bbot\b|inteligencia artificial|\bia\b/.test(t))return say('Eu sou a Kora, uma atendente com inteligência artificial. Esta é uma demonstração: empresas contratam a Kora para atender no site e no WhatsApp. Fale com a gente: (11) 99660-3491.');
+    if(/^(oi|ola|bom dia|boa tarde|boa noite|e ai|opa)/.test(t))return say('Olá! 😊 Como posso ajudar?');
+    if(/obrigad|valeu/.test(t))return say('Por nada! Qualquer coisa, é só chamar 💚');
+    return say('Não entendi muito bem 😅 Veja se alguma destas opções ajuda:');
+  }
+  function pedidoReply(n){const seg=cur().seg,r=pedido(seg,n);
+    if(!r.encontrado)return say('Não encontrei o pedido '+n+'. Confere o número? Nesta demonstração, teste com '+seg.pedidos.map(p=>p.numero).join(', ')+'.');
+    return say(r.status==='Entregue'?'Esse pedido já foi entregue. Algum problema com ele? Posso chamar a equipe.':'Qualquer novidade, eu te aviso por aqui 😉');}
+
+  /* ---------- IA ao vivo pelo servidor (/api/chat) ---------- */
+  async function aiBoot(){
+    try{const r=await fetch('/api/chat',{cache:'no-store'});const j=await r.json();return !!(j&&j.ai);}catch(_){return false}
+  }
+  async function aiAsk(seg,turns,{signal}){
+    let r;
+    try{r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({segmento:seg.id,messages:turns}),signal});}
+    catch(e){throw{code:e&&e.name==='AbortError'?'cancelled':'network'};}
+    const j=await r.json().catch(()=>({}));
+    if(r.ok&&j.reply)return{reply:j.reply,events:j.events||[]};
+    if(r.status===429)throw{code:'rate_limited'};
+    if(r.status===503)throw{code:'off',disable:true};
+    throw{code:'upstream'};
+  }
+
+
+  /* ---------- IA ---------- */
+  async function askAI(text){
+    const S=cur(),id=curId;S.turns.push({role:'user',content:text});
+    const bubble=typing();busy=true;ctl=new AbortController();sendB.hidden=true;stopB.hidden=false;chips([]);
+    try{
+      const r=await aiAsk(S.seg,S.turns.slice(-14),{signal:ctl.signal,onText:t=>{if(id===curId)setBubble(bubble,t)}});
+      if(id!==curId)return;
+      setBubble(bubble,r.reply);renderEvents(r.events);S.turns.push({role:'assistant',content:r.reply});
+    }catch(e){
+      if(id!==curId)return;
+      const code=e&&e.code;
+      if(code==='cancelled'){if(e.text){setBubble(bubble,e.text);S.turns.push({role:'assistant',content:e.text});}else{setBubble(bubble,'(resposta interrompida)');S.turns.pop();}}
+      else if(code==='rate_limited'){setBubble(bubble,'Recebi muitas mensagens seguidas. Tente de novo em um minuto 🙏');S.turns.pop();}
+      else{bubble.remove();S.turns.pop();if(e&&e.disable){setMode('demo');addMsg('A IA ao vivo não está disponível agora. Sigo no modo demonstração.','note');}fallback(text);}
+    }finally{if(id===curId){busy=false;sendB.hidden=false;stopB.hidden=true;if(mode==='ai'&&!chipsEl.childNodes.length)chips(cur().seg.atalhos);}}
+  }
+
+  /* ---------- envio ---------- */
+  function submit(text){
+    text=String(text||'').trim();if(!text||busy)return;
+    addMsg(text,'out');inp.value='';
+    if(mode==='ai')askAI(text);else fallback(text);
+  }
+  form.addEventListener('submit',e=>{e.preventDefault();submit(inp.value)});
+  stopB.addEventListener('click',()=>ctl&&ctl.abort());
+
+  /* ---------- abrir/fechar ---------- */
+  function open(seg){panel.hidden=false;btn.setAttribute('aria-expanded','true');
+    if(seg&&state[seg])switchSeg(seg,seg!==curId);else if(!log.childNodes.length)switchSeg(curId,true);
+    setTimeout(()=>inp.focus({preventScroll:true}),60);}
+  function close(){panel.hidden=true;btn.setAttribute('aria-expanded','false');btn.focus();}
+  btn.addEventListener('click',()=>panel.hidden?open():close());
+  $('kclose').addEventListener('click',close);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden)close()});
+  document.querySelectorAll('[data-kora]').forEach(b=>b.addEventListener('click',()=>open(b.getAttribute('data-seg')||null)));
+
+  setMode('demo');modeEl.textContent='Conectando…';
+  Promise.resolve().then(aiBoot).then(ok=>setMode(ok?'ai':'demo'),()=>setMode('demo'));
+})();
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+  const ss=x=>{x=clamp(x);return x*x*(3-2*x)};
+  const range=(p,a,b)=>ss((p-a)/(b-a));
+  const lerp=(a,b,t)=>a+(b-a)*t;
+
+  /* loader */
+  let lp=0,done=false;
+  const setL=v=>{lp=Math.max(lp,v);$('lp').textContent='PREPARANDO A NAVE '+String(Math.round(lp)).padStart(3,'0')+'%'};
+  const finish=()=>{if(done)return;done=true;setL(100);setTimeout(()=>$('loader').classList.add('done'),250)};
+  (function f(){if(done)return;setL(lp+(100-lp)*.07);setTimeout(f,60)})();
+  setTimeout(finish,2800);
+
+  /* utilidades */
+  const tick=()=>$('now').textContent=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});tick();setInterval(tick,15000);
+  document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{const el=$(b.dataset.t);
+    const ok=()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar',1500)};
+    const sel=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)};
+    try{navigator.clipboard.writeText(el.textContent).then(ok,sel)}catch(e){sel()}}));
+
+  /* scroll da jornada */
+  const journey=$('journey'), hull=$('hull'), rim=$('rim'), sheet=document.querySelector('#curtain .sheet');
+  const ovs=[...document.querySelectorAll('.ov')], bub=[...document.querySelectorAll('#bub div')];
+  const hz=document.querySelector('.hz'), track=$('track'), hbar=$('hbar');
+  let P=0;
+  const chapters=[0,.1,.24,.44,.5,.62,.8];
+  function onScroll(){
+    const total=journey.offsetHeight-innerHeight;
+    P=clamp(scrollY/total);
+    $('prog').style.transform=`scaleX(${P})`;document.querySelector('nav').classList.toggle('solid',scrollY>journey.offsetHeight-innerHeight*.6);
+    let c=0;chapters.forEach((v,i)=>{if(P>=v)c=i});$('chap').textContent=String(c+1).padStart(2,'0');
+
+    // janela abrindo
+    const open=range(P,0,.13);
+    const r0=Math.min(innerWidth,innerHeight)*.24, r1=Math.hypot(innerWidth,innerHeight)*.75;
+    const r=lerp(r0,r1,Math.pow(open,1.6));
+    hull.style.setProperty('--r',r+'px'); rim.style.setProperty('--r',r+'px');
+    const narrowV=innerWidth<860, cx0=narrowV?50:68, cy0=narrowV?64:50;
+    const cx=lerp(cx0,50,open), cy=lerp(cy0,50,open);
+    [hull,rim].forEach(el=>{el.style.setProperty('--cx',cx+'%');el.style.setProperty('--cy',cy+'%')});
+    const hullOn=open<.999; hull.style.visibility=rim.style.visibility=hullOn?'visible':'hidden';
+    rim.style.opacity=1-range(P,.09,.13);
+
+    // cortina 24/7
+    const q=range(P,.42,.52);
+    sheet.style.transform=`translateX(${lerp(-130,130,q)}%) skewX(-14deg)`;
+
+    // capítulos
+    ovs.forEach(o=>{const a=+o.dataset.a,b=+o.dataset.b,w=.025;
+      let v= a===0 ? 1-range(P,b-w,b) : range(P,a,a+w)*(1-range(P,b-w,b));
+      o.style.opacity=v; o.style.visibility=v>.01?'visible':'hidden';
+      o.style.transform=`translateY(${(1-v)*30*(P<a+w?1:-1)}px)`;});
+    bub.forEach((d,i)=>d.classList.toggle('on',P>.645+i*.017));
+
+    // faixa horizontal
+    const hr=hz.getBoundingClientRect(), hp=clamp(-hr.top/(hr.height-innerHeight));
+    const maxX=Math.max(0,track.scrollWidth-innerWidth+40);
+    track.style.transform=`translateX(${-hp*maxX}px)`; hbar.style.transform=`scaleX(${hp})`;
+  }
+  addEventListener('scroll',onScroll,{passive:true}); addEventListener('resize',onScroll); onScroll();
+
+  /* ---------- 3D ---------- */
+  if(!window.THREE){finish();return;}
+  let renderer; try{renderer=new THREE.WebGLRenderer({canvas:$('stage'),antialias:false,powerPreference:'high-performance'})}catch(e){finish();return;}
+  const mobile=innerWidth<860, DPR=Math.min(devicePixelRatio,1.5);
+  renderer.setPixelRatio(DPR);
+  const scene=new THREE.Scene(); scene.background=new THREE.Color('#040B11');
+  const camera=new THREE.PerspectiveCamera(45,1,.1,200);
+  setL(35);
+
+  const N=mobile?6500:13000, TAU=Math.PI*2, R=Math.random;
+  const sphere=()=>{const a=new Float32Array(N*3);for(let i=0;i<N;i++){const y=1-(i/(N-1))*2,r=Math.sqrt(1-y*y),t=Math.PI*(3-Math.sqrt(5))*i,s=1.9;a.set([Math.cos(t)*r*s,y*s,Math.sin(t)*r*s],i*3)}return a};
+  const helix=()=>{const a=new Float32Array(N*3),H=5.8,T=2.6,rad=1.15;for(let i=0;i<N;i++){const k=R();let x,y,z;
+    if(k<.72){const s=k<.36?0:Math.PI,t=R(),g=t*T*TAU+s;y=(t-.5)*H;x=Math.cos(g)*rad+(R()-.5)*.08;z=Math.sin(g)*rad+(R()-.5)*.08}
+    else{const n=34,ri=Math.floor(R()*n),t=(ri+.5)/n,g=t*T*TAU,u=R()*2-1;y=(t-.5)*H;x=Math.cos(g)*rad*u;z=Math.sin(g)*rad*u}
+    a.set([x,y,z],i*3)}return a};
+  const clock=()=>{const a=new Float32Array(N*3),d=new Date(),h=d.getHours()%12+d.getMinutes()/60,m=d.getMinutes();
+    const ah=Math.PI/2-h/12*TAU,am=Math.PI/2-m/60*TAU;
+    const hand=(ang,len,w)=>{const r=R()*len,o=(R()-.5)*w;return[Math.cos(ang)*r-Math.sin(ang)*o,Math.sin(ang)*r+Math.cos(ang)*o]};
+    for(let i=0;i<N;i++){const k=R();let x,y,z=(R()-.5)*.18;
+      if(k<.5){const t=R()*TAU,r=2.15+(R()-.5)*.1;x=Math.cos(t)*r;y=Math.sin(t)*r}
+      else if(k<.66){const tk=Math.floor(R()*12),t=Math.PI/2-tk/12*TAU,big=tk%3===0,r=1.95-R()*(big?.42:.22),o=(R()-.5)*(big?.1:.05);x=Math.cos(t)*r-Math.sin(t)*o;y=Math.sin(t)*r+Math.cos(t)*o}
+      else if(k<.78){[x,y]=hand(ah,1.05,.1)} else if(k<.94){[x,y]=hand(am,1.6,.06)}
+      else{const t=R()*TAU,r=Math.sqrt(R())*.16;x=Math.cos(t)*r;y=Math.sin(t)*r}
+      a.set([x,y,z],i*3)}return a};
+  const bubble=()=>{const a=new Float32Array(N*3),W=3.6,Hh=2.3,rr=.55,hw=W/2,hh=Hh/2;
+    const edge=()=>{const t=R()*TAU;const px=Math.cos(t),py=Math.sin(t);// superelipse arredondada
+      const n=6,sx=Math.sign(px)*Math.pow(Math.abs(px),2/n),sy=Math.sign(py)*Math.pow(Math.abs(py),2/n);return[sx*hw,sy*hh]};
+    for(let i=0;i<N;i++){const k=R();let x,y,z=(R()-.5)*.2;
+      if(k<.58){[x,y]=edge();x+=(R()-.5)*.05;y+=(R()-.5)*.05}
+      else if(k<.68){const u=R(),v=R()*(1-u);x=-1.35+u*.3+v*.8;y=-hh-u*.75}
+      else if(k<.92){const l=Math.floor(R()*3),len=[2.4,2.0,1.3][l];x=-1.25+R()*len;y=.55-l*.55+(R()-.5)*.08}
+      else{const d=Math.floor(R()*3),t=R()*TAU,r=Math.sqrt(R())*.1;x=.75+d*.32+Math.cos(t)*r;y=-.55+Math.sin(t)*r}
+      a.set([x,y,z],i*3)}return a};
+  const dot=()=>{const a=new Float32Array(N*3);for(let i=0;i<N;i++){const t=R()*TAU,u=R()*2-1,s=Math.sqrt(1-u*u),r=Math.cbrt(R())*.08;a.set([Math.cos(t)*s*r,u*r,Math.sin(t)*s*r],i*3)}return a};
+  const bars=()=>{const a=new Float32Array(N*3),H=[1.1,1.8,2.6,3.5],X=[-1.65,-.55,.55,1.65],w=.62,dep=.62,base=-1.75;
+    for(let i=0;i<N;i++){const k=R();let p;
+      if(k<.8){const b=i%4,h=H[b],f=Math.floor(R()*6),ax=f>>1,sg=f&1?1:-1,sz=[w,h,dep];p=[(R()-.5)*w,(R()-.5)*h,(R()-.5)*dep];p[ax]=sg*sz[ax]/2;
+        if(R()<.35){const o=(ax+1+Math.floor(R()*2))%3;p[o]=(R()<.5?-1:1)*sz[o]/2}p[0]+=X[b];p[1]+=base+h/2;}
+      else if(k<.95){const t=R(),x0=-2.2,y0=-.2,x1=2.1,y1=2.45;p=[x0+(x1-x0)*t+(R()-.5)*.05,y0+(y1-y0)*t+(R()-.5)*.05,(R()-.5)*.08];}
+      else{const u=R(),v=R()*(1-u),tip=[2.35,2.62],l=[1.85,2.5],r=[2.2,2.02];p=[tip[0]+(l[0]-tip[0])*u+(r[0]-tip[0])*v,tip[1]+(l[1]-tip[1])*u+(r[1]-tip[1])*v,(R()-.5)*.08];}
+      a.set(p,i*3)}return a};
+  const S=[sphere(),helix(),clock(),bubble(),dot(),bars()];
+  // mapa do scroll → forma (índice fracionário)
+  const SH=[[0,0],[.22,0],[.28,1],[.44,1],[.5,2],[.6,2],[.64,3],[.72,3],[.76,4],[.8,5],[1,5]];
+  const pw=(tbl,p)=>{for(let i=0;i<tbl.length-1;i++){const[a,va]=tbl[i],[b,vb]=tbl[i+1];if(p<=b)return lerp(va,vb,ss((p-a)/(b-a||1)))}return tbl[tbl.length-1][1]};
+  setL(65);
+
+  const dir=new Float32Array(N*3),rnd=new Float32Array(N);
+  for(let i=0;i<N;i++){const t=R()*TAU,u=R()*2-1,s=Math.sqrt(1-u*u);dir.set([Math.cos(t)*s,u,Math.sin(t)*s],i*3);rnd[i]=R()}
+  const pos=new Float32Array(N*3);pos.set(S[0]);
+  const geo=new THREE.BufferGeometry(),pa=new THREE.BufferAttribute(pos,3);pa.setUsage(THREE.DynamicDrawUsage);
+  geo.setAttribute('position',pa);geo.setAttribute('aRnd',new THREE.BufferAttribute(rnd,1));
+  const U={uTime:{value:0},uAmp:{value:.1},uMix:{value:0},uSize:{value:(mobile?2.6:2.2)*DPR},uHeat:{value:0},
+    uA:{value:new THREE.Color('#5FE3C0')},uB:{value:new THREE.Color('#FFB892')},uC:{value:new THREE.Color('#A8DCFF')}};
+  const mat=new THREE.ShaderMaterial({uniforms:U,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+    vertexShader:`uniform float uTime,uAmp,uSize;attribute float aRnd;varying float vR;
+      void main(){vec3 p=position;float n=sin(p.x*2.3+uTime*1.1)*sin(p.y*2.1+uTime*.9)*sin(p.z*2.6+uTime*.8);
+        p+=normalize(p+vec3(.0001))*n*uAmp;vR=aRnd;vec4 mv=modelViewMatrix*vec4(p,1.);
+        gl_PointSize=uSize*(.55+aRnd*.9)*(7./-mv.z);gl_Position=projectionMatrix*mv;}`,
+    fragmentShader:`uniform vec3 uA,uB,uC;uniform float uMix,uHeat;varying float vR;
+      void main(){vec2 c=gl_PointCoord-.5;float l=length(c);if(l>.5)discard;float a=pow(smoothstep(.5,0.,l),1.6);
+        vec3 col=mix(uA,uB,clamp(uMix+(vR-.5)*.5,0.,1.));col=mix(col,uC,step(.93,vR)*.8);col+=uHeat;
+        gl_FragColor=vec4(col,a*.75);}`});
+  const group=new THREE.Group();scene.add(group);group.add(new THREE.Points(geo,mat));
+
+  // estrelas como traços (viram linhas na dobra)
+  const ST=mobile?700:1600,sp=new Float32Array(ST*6),sd=new Float32Array(ST*3);
+  for(let i=0;i<ST;i++){sd.set([(R()-.5)*60,(R()-.5)*40,-R()*120],i*3)}
+  const sg=new THREE.BufferGeometry(),sa=new THREE.BufferAttribute(sp,3);sa.setUsage(THREE.DynamicDrawUsage);sg.setAttribute('position',sa);
+  const stars=new THREE.LineSegments(sg,new THREE.LineBasicMaterial({color:0xBDEFE2,transparent:true,opacity:.7}));
+  scene.add(stars);
+
+  // anéis orbitais
+  const orbit=new THREE.Group();scene.add(orbit);const rings=[];
+  [[3,1.1,0x5FE3C0,.4],[3.5,-.6,0xFFB892,-.28]].forEach(([Rr,tl,col,spd])=>{const M=220,rp=new Float32Array(M*3);
+    for(let i=0;i<M;i++){const t=i/M*TAU;rp.set([Math.cos(t)*Rr,(R()-.5)*.05,Math.sin(t)*Rr],i*3)}
+    const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(rp,3));
+    const ring=new THREE.Points(g,new THREE.PointsMaterial({color:col,size:.03,transparent:true,opacity:.55,depthWrite:false}));
+    const c=new THREE.Mesh(new THREE.SphereGeometry(.06,12,12),new THREE.MeshBasicMaterial({color:col,transparent:true}));
+    ring.add(c);ring.rotation.x=tl;orbit.add(ring);rings.push({ring,c,Rr,spd})});
+
+  let composer=null,bloom=null;
+  if(THREE.EffectComposer&&THREE.UnrealBloomPass){composer=new THREE.EffectComposer(renderer);composer.addPass(new THREE.RenderPass(scene,camera));
+    bloom=new THREE.UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),1,.7,.08);composer.addPass(bloom)}
+  setL(90);
+
+  // trilhas de câmera e posição por scroll
+  const GX=[[0,0],[.22,0],[.28,1.9],[.44,1.9],[.5,-1.9],[.6,-1.9],[.64,1.9],[.72,1.9],[.76,0],[1,0]];
+  const GY=[[0,0],[.8,0],[.86,.7],[1,.7]];
+  const CZ=[[0,11],[.12,4.2],[.2,9],[.28,8],[.44,7.2],[.5,7.8],[.72,7.8],[.76,5.5],[.82,8.5],[1,8.5]];
+  const MIX=[[0,0],[.22,0],[.28,.2],[.5,.55],[.64,.85],[.8,.4],[1,.4]];
+  const OB=[[0,1],[.22,1],[.28,.3],[.44,.3],[.5,.1],[.64,.2],[.72,.2],[.76,0],[.82,1],[1,1]];
+  const WARP=[[0,0],[.08,0],[.14,1],[.2,1],[.24,0],[.74,0],[.78,.7],[.82,0],[1,0]];
+
+  function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();if(composer)composer.setSize(w,h)}
+  addEventListener('resize',resize);resize();
+
+  let mx=0,my=0,smx=0,smy=0,sP=P;
+  addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+  const clk=new THREE.Clock();
+  let lastF=-1,perfN=0,perfT=0,level=0;
+
+  function frame(){
+    requestAnimationFrame(frame);
+    const dt=Math.min(clk.getDelta(),.05),t=clk.elapsedTime,k=1-Math.pow(.02,dt);
+    sP+=(P-sP)*(reduce?1:k*1.4);
+    // pausa quando a jornada saiu da tela
+    if(journey.getBoundingClientRect().bottom<-innerHeight*.2)return;
+    const p=sP;
+
+    // morph entre formas
+    const f=pw(SH,p),i0=Math.floor(f),i1=Math.min(i0+1,S.length-1),tt=f-i0,A=S[i0],B=S[i1];
+    if(Math.abs(f-lastF)>1e-5){lastF=f;
+    for(let i=0;i<N;i++){const r=rnd[i];let ti=ss(tt*1.6-r*.6);const burst=Math.sin(ti*Math.PI)*(.6+r*1.6)*(i1===5?2.2:1);
+      const j=i*3;for(let c=0;c<3;c++)pos[j+c]=A[j+c]+(B[j+c]-A[j+c])*ti+dir[j+c]*burst}
+    pa.needsUpdate=true;}
+
+    // dobra espacial
+    const warp=pw(WARP,p),speed=(reduce?0:.02)+warp*1.8;
+    for(let i=0;i<ST;i++){const j=i*3;sd[j+2]+=speed*60*dt+ (reduce?0:dt*.6);if(sd[j+2]>camera.position.z){sd[j+2]-=125;sd[j]=(R()-.5)*60;sd[j+1]=(R()-.5)*40}
+      const len=.05+warp*6;sp.set([sd[j],sd[j+1],sd[j+2],sd[j],sd[j+1],sd[j+2]-len],i*6)}
+    sa.needsUpdate=true;stars.material.opacity=.45+warp*.5;
+
+    smx+=(mx-smx)*k;smy+=(my-smy)*k;
+    const narrow=innerWidth<860;
+    // na abertura a esfera fica centrada na janela da nave
+    const op=range(p,0,.13), cz=pw(CZ,p), halfH=Math.tan(camera.fov*Math.PI/360)*cz, halfW=halfH*camera.aspect;
+    const hx=((narrow?50:68)/100-.5)*2*halfW*(1-op), hy=-((narrow?64:50)/100-.5)*2*halfH*(1-op);
+    group.position.set((narrow?0:pw(GX,p))+hx,pw(GY,p)+(narrow&&p>.2?.9:0)+hy,0);
+    group.scale.setScalar((narrow?.72:1)*(p<.13?lerp(.55,1,op):1));
+    const helixOrbit=range(p,.28,.44)*Math.PI*1.4, crossSpin=p>.8&&!reduce?t*.35:0, sway=reduce?0:Math.sin(t*.35)*.3;
+    group.rotation.set(smy*.4,sway+smx*.8+helixOrbit+crossSpin+(p<.22&&!reduce?t*.15:0),0);
+    U.uMix.value=pw(MIX,p);U.uAmp.value=reduce?0:.1*(1-range(p,.22,.28))+.03;U.uTime.value=reduce?0:t;
+    U.uHeat.value=warp*.25;
+
+    orbit.position.copy(group.position);orbit.scale.copy(group.scale);orbit.rotation.copy(group.rotation);
+    const ob=pw(OB,p);rings.forEach((o,i)=>{o.ring.rotation.y=(reduce?0:t)*o.spd;const g=(reduce?0:t)*(.8+i*.3);o.c.position.set(Math.cos(g)*o.Rr,0,Math.sin(g)*o.Rr);o.ring.material.opacity=.55*ob;o.c.material.opacity=ob});
+
+    camera.position.set(smx*.7,-smy*.5,pw(CZ,p));
+    camera.rotation.z=warp*.08*Math.sin(t*2);
+    camera.lookAt(group.position.x*.25,group.position.y*.5,0);
+    camera.fov=45+warp*18;camera.updateProjectionMatrix();
+    if(bloom)bloom.strength=.95+warp*.9;
+    // qualidade adaptativa: aparelho lento perde o brilho e depois metade das partículas
+    perfN++;perfT+=dt;
+    if(perfN>=90){const fps=perfN/perfT;perfN=0;perfT=0;
+      if(fps<42&&level===0){level=1;composer=null;}
+      else if(fps<38&&level===1){level=2;geo.setDrawRange(0,Math.floor(N/2));}}
+    composer?composer.render():renderer.render(scene,camera);
+  }
+  frame();setL(100);
+  if(document.readyState==='complete')finish();else addEventListener('load',finish);
+})();
+</script>
+</body>
+</html>

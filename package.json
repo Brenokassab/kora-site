@@ -1,0 +1,14 @@
+{
+  "name": "kora-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site da Kora e atendente virtual com IA (site + WhatsApp) para empresas",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node dev.js",
+    "test": "node test/smoke.js",
+    "publicar": "node publicar.js"
+  }
+}

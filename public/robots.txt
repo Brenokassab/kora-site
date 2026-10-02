@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin
+Disallow: /cadastro
+
+Sitemap: https://SEU-DOMINIO.com.br/sitemap.xml

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cadastro da sua Kora</title>
+<meta name="description" content="Conte como é a sua empresa e a Kora fica pronta para atender seus clientes.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{--bg:#040B11;--panel:#0A1820;--ink:#EDF7F3;--muted:#8AA8A2;--line:rgba(237,247,243,.14);--accent:#5FE3C0;--accent-ink:#03201A;--warm:#FFB892;--err:#FF8A7A;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;--body:"Figtree","Segoe UI",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body)}
+main{max-width:860px;margin:0 auto;padding-inline:20px;padding-block:48px 96px}
+a{color:var(--accent)}
+h1{font:800 clamp(34px,6vw,54px)/1.02 var(--display);letter-spacing:-.035em;margin:14px 0 12px;text-wrap:balance}
+h2{font:800 22px/1.2 var(--display);letter-spacing:-.01em;margin:0 0 4px}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.lede{color:var(--muted);font-size:18px;max-width:56ch}
+form{display:grid;gap:18px;margin-top:34px}
+fieldset{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:22px;margin:0;display:grid;gap:14px;min-width:0}
+fieldset > p{color:var(--muted);margin:-2px 0 4px;font-size:14.5px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid > *{min-width:0}
+label{display:grid;gap:6px;font-weight:600;font-size:14.5px}
+label small{font-weight:400;color:var(--muted)}
+input,select,textarea{width:100%;min-width:0;border:1px solid var(--line);background:rgba(237,247,243,.04);color:var(--ink);border-radius:12px;padding:11px 13px;font:15px var(--body)}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.row{display:grid;grid-template-columns:1.3fr .8fr 1.3fr auto;gap:8px;align-items:center}
+.row.tipo{grid-template-columns:1.6fr .6fr auto}
+.x{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;font-size:18px}
+.add{justify-self:start;border:1px dashed rgba(95,227,192,.5);background:transparent;color:var(--accent);border-radius:999px;padding:8px 14px;font:600 14px var(--body);cursor:pointer}
+.days{display:flex;flex-wrap:wrap;gap:8px}
+.days label{display:flex;align-items:center;gap:6px;font-weight:500;border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.days input{width:auto}
+.check{display:flex;align-items:center;gap:10px;font-weight:600}
+.check input{width:20px;height:20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;cursor:pointer;padding:15px 26px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font:600 16px var(--body)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.msg{border-radius:14px;padding:14px 16px;font-size:15px}
+.msg.ok{background:rgba(95,227,192,.12);border:1px solid rgba(95,227,192,.4)}
+.msg.err{background:rgba(255,138,122,.1);border:1px solid rgba(255,138,122,.45);color:var(--err)}
+pre{background:#02070B;border:1px solid var(--line);border-radius:14px;padding:16px;overflow:auto;max-height:420px;font:12.5px/1.5 var(--mono);color:#BFE9DC}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media (max-width:640px){.grid,.row,.row.tipo{grid-template-columns:1fr}.x{justify-self:end}}
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">Kora · cadastro da empresa</div>
+  <h1>Conte como é a sua empresa. A Kora aprende o resto.</h1>
+  <p class="lede">Leva uns 10 minutos. Com estas respostas, a sua atendente fica pronta para responder clientes, vender e agendar do jeito da sua empresa. Você pode corrigir qualquer coisa depois.</p>
+
+  <form id="f" novalidate>
+    <div class="hp" aria-hidden="true"><label>Não preencha<input name="site_url" id="site_url" tabindex="-1" autocomplete="off"></label></div>
+
+    <fieldset>
+      <h2>1. Sobre você</h2>
+      <div class="grid">
+        <label>Seu nome<input id="r_nome" required autocomplete="name"></label>
+        <label>WhatsApp com DDD<input id="r_whats" required inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000"></label>
+        <label>E-mail<input id="r_email" type="email" autocomplete="email"></label>
+        <label>Plano
+          <select id="plano"><option value="Completo">Completo · R$ 249/mês</option><option value="Essencial">Essencial · R$ 149/mês</option><option value="Site + Kora">Site + Kora</option><option value="Ainda não sei">Ainda não sei</option></select></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <h2>2. A empresa</h2>
+      <div class="grid">
+        <label>Nome da empresa<input id="nome" required autocomplete="organization"></label>
+        <label>Nome da atendente <small>(pode deixar Kora)</small><input id="assistente" value="Kora"></label>
+      </div>
+      <label>O que a empresa faz, em uma frase<input id="descricao" required placeholder="Ex.: loja de roupas femininas com site e loja física em Campinas"></label>
+      <div class="grid">
+        <label>Endereço ou área de atendimento<input id="endereco" placeholder="Ex.: Rua X, 100, Centro, Campinas - SP"></label>
+        <label>Horário de funcionamento<input id="horarioTexto" placeholder="Ex.: segunda a sábado, 9h às 19h"></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <h2>3. Produtos e serviços</h2>
+      <p>Os itens que os clientes mais perguntam, com preço. Se tiver muitos, comece pelos principais.</p>
+      <label style="max-width:320px">Como chamar esta lista<input id="rotuloItens" value="Produtos e serviços"></label>
+      <div id="itens" style="display:grid;gap:8px"></div>
+      <button type="button" class="add" id="addItem">+ Adicionar item</button>
+    </fieldset>
+
+    <fieldset>
+      <h2>4. Informações e políticas</h2>
+      <label>Uma informação por linha <small>frete, entrega, trocas, pagamento, convênios, documentos, estacionamento…</small>
+        <textarea id="informacoes" placeholder="Frete grátis acima de R$ 200&#10;Pix com 5% de desconto; cartão em até 6x&#10;Troca em até 30 dias"></textarea></label>
+      <label>Perguntas frequentes <small>uma por linha, no formato pergunta | resposta</small>
+        <textarea id="faq" placeholder="Vocês entregam no mesmo dia? | Sim, para pedidos até 14h na cidade de Campinas."></textarea></label>
+      <label>Regras e tom de voz <small>uma por linha</small>
+        <textarea id="regras" placeholder="Tratar o cliente por você e usar emojis com moderação&#10;Nunca dar desconto sem falar com o gerente"></textarea></label>
+    </fieldset>
+
+    <fieldset>
+      <h2>5. Agenda</h2>
+      <label class="check"><input type="checkbox" id="agAtivo"> A empresa marca horários (consultas, visitas, reservas, reuniões)</label>
+      <div id="ag" hidden style="display:grid;gap:14px">
+        <div class="grid">
+          <label>Como vocês chamam o horário<input id="agRotulo" placeholder="consulta, visita, reserva, reunião…"></label>
+          <label>Pergunta antes de marcar <small>(opcional)</small><input id="agDetalhe" placeholder="Ex.: Para quantas pessoas?"></label>
+        </div>
+        <div id="tipos" style="display:grid;gap:8px"></div>
+        <button type="button" class="add" id="addTipo">+ Adicionar tipo de horário</button>
+        <div><b style="font-size:14.5px">Dias de atendimento</b><div class="days" id="dias" style="margin-top:8px"></div></div>
+        <div class="grid">
+          <label>Manhã<span style="display:flex;gap:8px"><input type="time" id="m1" value="09:00"><input type="time" id="m2" value="12:00"></span></label>
+          <label>Tarde <small>(deixe vazio se não atende)</small><span style="display:flex;gap:8px"><input type="time" id="t1" value="14:00"><input type="time" id="t2" value="18:00"></span></label>
+          <label>Intervalo entre horários
+            <select id="intervalo"><option>15</option><option>20</option><option selected>30</option><option>45</option><option>60</option></select></label>
+          <label>Antecedência mínima (horas)<input type="number" id="antecedencia" min="0" max="72" value="2"></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <div id="out" role="status" aria-live="polite"></div>
+    <div class="actions">
+      <button class="btn" type="submit" id="enviar">Enviar cadastro</button>
+      <button class="btn ghost" type="button" id="ver">Ver configuração gerada</button>
+    </div>
+    <pre id="json" hidden></pre>
+  </form>
+  <p style="color:var(--muted);font-size:14px;margin-top:40px">Seus dados são usados só para configurar a sua atendente. <a href="/privacidade">Política de privacidade</a>.</p>
+</main>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const itens=$('itens'),tipos=$('tipos');
+  function itemRow(v={}){const r=document.createElement('div');r.className='row';
+    r.innerHTML='<input aria-label="Nome do item" placeholder="Nome"><input aria-label="Preço" placeholder="Preço"><input aria-label="Detalhes" placeholder="Detalhes (tamanhos, duração…)"><button type="button" class="x" aria-label="Remover item">×</button>';
+    const [n,p,d]=r.querySelectorAll('input');n.value=v.nome||'';p.value=v.preco||'';d.value=v.detalhes||'';
+    r.querySelector('.x').onclick=()=>r.remove();itens.appendChild(r);}
+  function tipoRow(v={}){const r=document.createElement('div');r.className='row tipo';
+    r.innerHTML='<input aria-label="Tipo de horário" placeholder="Ex.: Avaliação, Visita, Reserva de mesa"><input type="number" min="10" max="480" aria-label="Duração em minutos" placeholder="min"><button type="button" class="x" aria-label="Remover tipo">×</button>';
+    const [n,d]=r.querySelectorAll('input');n.value=v.nome||'';d.value=v.duracaoMin||60;r.querySelector('.x').onclick=()=>r.remove();tipos.appendChild(r);}
+  itemRow();itemRow();itemRow();tipoRow();
+  $('addItem').onclick=()=>itemRow();$('addTipo').onclick=()=>tipoRow();
+  const DN=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  [1,2,3,4,5,6,0].forEach(d=>{const l=document.createElement('label');l.innerHTML='<input type="checkbox" value="'+d+'"'+(d>=1&&d<=5?' checked':'')+'> '+DN[d];$('dias').appendChild(l);});
+  $('agAtivo').onchange=e=>{$('ag').hidden=!e.target.checked};
+
+  function collect(){
+    const faixas=[];if($('m1').value&&$('m2').value)faixas.push({inicio:$('m1').value,fim:$('m2').value});if($('t1').value&&$('t2').value)faixas.push({inicio:$('t1').value,fim:$('t2').value});
+    return{
+      site_url:$('site_url').value,plano:$('plano').value,
+      responsavel:{nome:$('r_nome').value,whatsapp:$('r_whats').value,email:$('r_email').value},
+      nome:$('nome').value,assistente:$('assistente').value,descricao:$('descricao').value,endereco:$('endereco').value,horarioTexto:$('horarioTexto').value,
+      rotuloItens:$('rotuloItens').value,
+      itens:[...itens.children].map(r=>{const[n,p,d]=r.querySelectorAll('input');return{nome:n.value,preco:p.value,detalhes:d.value}}),
+      informacoes:$('informacoes').value,faq:$('faq').value,regras:$('regras').value,
+      agenda:{ativo:$('agAtivo').checked,rotulo:$('agRotulo').value,detalhe:$('agDetalhe').value,
+        tipos:[...tipos.children].map(r=>{const[n,d]=r.querySelectorAll('input');return{nome:n.value,duracaoMin:d.value}}),
+        dias:[...$('dias').querySelectorAll('input:checked')].map(i=>i.value),faixas,intervaloMin:$('intervalo').value,antecedenciaMinHoras:$('antecedencia').value}
+    };
+  }
+  function show(kind,html){$('out').innerHTML='<div class="msg '+kind+'"></div>';$('out').firstChild.textContent=html;}
+  function localErrors(d){const e=[];if(!d.nome.trim())e.push('Informe o nome da empresa.');if(!d.descricao.trim())e.push('Descreva a empresa em uma frase.');
+    if(!d.responsavel.nome.trim())e.push('Informe o seu nome.');if(!/\d{10,13}/.test(d.responsavel.whatsapp.replace(/\D/g,'')))e.push('Informe um WhatsApp com DDD.');return e;}
+  $('ver').onclick=()=>{const d=collect();
+    $('json').hidden=false;$('json').textContent=JSON.stringify(previewConfig(d),null,2);};
+  // prévia local (a versão definitiva é gerada no servidor, com as mesmas regras)
+  function previewConfig(d){return{nome:d.nome,assistente:d.assistente||'Kora',descricao:d.descricao,endereco:d.endereco,horarioTexto:d.horarioTexto,rotuloItens:d.rotuloItens,
+    itens:d.itens.filter(i=>i.nome),informacoes:d.informacoes.split('\n').filter(Boolean),faq:d.faq.split('\n').filter(Boolean),regras:d.regras.split('\n').filter(Boolean),
+    agendamento:d.agenda.ativo?{rotulo:d.agenda.rotulo,tipos:d.agenda.tipos.filter(t=>t.nome),dias:d.agenda.dias,faixas:d.agenda.faixas}:null};}
+  $('f').addEventListener('submit',async e=>{e.preventDefault();const d=collect(),errs=localErrors(d);
+    if(errs.length)return show('err',errs.join(' '));
+    $('enviar').disabled=true;$('enviar').textContent='Enviando…';
+    try{const r=await fetch('/api/cadastro',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});const j=await r.json().catch(()=>({}));
+      if(r.ok&&j.ok){show('ok','Cadastro recebido! Vamos configurar a sua Kora e te chamar no WhatsApp para testar antes de ir ao ar.');if(j.config){$('json').hidden=false;$('json').textContent=JSON.stringify(j.config,null,2);}$('enviar').textContent='Enviado ✓';return;}
+      show('err',(j.erros&&j.erros.join(' '))||(r.status===429?'Muitos envios seguidos. Tente de novo mais tarde.':'Não foi possível enviar agora. Tente de novo em instantes ou fale com a gente pelo WhatsApp (11) 99660-3491.'));
+    }catch(_){show('err','Sem conexão com o servidor. Tente de novo em instantes ou fale com a gente pelo WhatsApp (11) 99660-3491.');}
+    $('enviar').disabled=false;$('enviar').textContent='Enviar cadastro';});
+})();
+</script>
+</body>
+</html>

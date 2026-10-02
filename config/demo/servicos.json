@@ -1,0 +1,111 @@
+{
+  "aba": "Serviços",
+  "nome": "Prisma Contabilidade",
+  "descricao": "escritório de contabilidade digital para MEI e pequenas empresas",
+  "endereco": "atendimento 100% online; sede na Rua Vergueiro, 3000, Vila Mariana, São Paulo - SP",
+  "horarioTexto": "segunda a sexta, 9h às 18h",
+  "rotuloItens": "Serviços e planos",
+  "itens": [
+    {
+      "nome": "Contabilidade para MEI",
+      "preco": "R$ 89/mês",
+      "detalhes": "DAS, declaração anual e suporte"
+    },
+    {
+      "nome": "Contabilidade Simples Nacional (serviços)",
+      "preco": "a partir de R$ 390/mês",
+      "detalhes": "depende do faturamento e do número de funcionários"
+    },
+    {
+      "nome": "Abertura de empresa",
+      "preco": "R$ 890, grátis ao contratar o plano anual"
+    },
+    {
+      "nome": "Declaração de Imposto de Renda (pessoa física)",
+      "preco": "a partir de R$ 250"
+    },
+    {
+      "nome": "Troca de contador",
+      "preco": "gratuita, cuidamos de toda a transição"
+    }
+  ],
+  "informacoes": [
+    "Primeira reunião de diagnóstico gratuita, por vídeo, com 30 minutos.",
+    "Atendemos empresas de todo o Brasil.",
+    "Pagamento por boleto ou Pix, todo mês."
+  ],
+  "regras": [
+    "Não dê parecer tributário definitivo; para casos específicos, ofereça a reunião de diagnóstico.",
+    "Qualifique: pergunte se a pessoa já tem empresa, o tipo (MEI, ME) e o ramo."
+  ],
+  "agendamento": {
+    "rotulo": "reunião",
+    "tipos": [
+      {
+        "nome": "Reunião de diagnóstico (gratuita, por vídeo)",
+        "duracaoMin": 30
+      }
+    ],
+    "horarios": {
+      "1": [
+        "09:00-12:00",
+        "14:00-18:00"
+      ],
+      "2": [
+        "09:00-12:00",
+        "14:00-18:00"
+      ],
+      "3": [
+        "09:00-12:00",
+        "14:00-18:00"
+      ],
+      "4": [
+        "09:00-12:00",
+        "14:00-18:00"
+      ],
+      "5": [
+        "09:00-12:00",
+        "14:00-18:00"
+      ]
+    },
+    "intervaloMin": 30,
+    "antecedenciaMinHoras": 2,
+    "diasAgenda": 14
+  },
+  "saudacao": "Olá! Eu sou a Kora, da Prisma Contabilidade 📊\nVocê já tem empresa ou quer abrir uma?",
+  "atalhos": [
+    "Quero abrir uma empresa",
+    "Sou MEI",
+    "Trocar de contador",
+    "Agendar reunião",
+    "Falar com um contador"
+  ],
+  "faq": [
+    {
+      "k": "abrir|abertura",
+      "a": "A abertura custa R$ 890 e sai grátis se você contratar o plano anual. Quer agendar uma reunião de diagnóstico gratuita para ver o melhor formato para você?"
+    },
+    {
+      "k": "\\bmei\\b|microempreendedor",
+      "a": "Para MEI a contabilidade é R$ 89/mês, com DAS, declaração anual e suporte. Quer começar?"
+    },
+    {
+      "k": "trocar|troca de contador|mudar de contador",
+      "a": "A troca de contador é gratuita e a gente cuida de toda a transição com o contador atual. Quer agendar uma reunião rápida?"
+    },
+    {
+      "k": "imposto de renda|irpf|declara",
+      "a": "A declaração de Imposto de Renda de pessoa física sai a partir de R$ 250."
+    }
+  ],
+  "cartao": [
+    "Qualifica leads e marca reuniões",
+    "Entende o cliente, explica os planos e agenda a reunião de diagnóstico."
+  ],
+  "id": "servicos",
+  "ficticia": true,
+  "assistente": "Kora",
+  "sobreKora": "Se perguntarem sobre a própria Kora (o produto, quem fez, quanto custa): explique que esta é uma demonstração; a Kora é uma atendente com IA para empresas, que atende no site e no WhatsApp, vende, agenda e tira dúvidas. Planos: Essencial R$ 149/mês + implantação R$ 790; Completo R$ 249/mês + implantação R$ 1.890. Contato: WhatsApp (11) 99660-3491 ou brenokojian0@gmail.com. Se a pessoa quiser a Kora para a empresa dela, peça nome, nome da empresa, ramo e WhatsApp e use registrar_lead com interesse 'Contratar a Kora'; depois diga que a equipe da Kora entra em contato.",
+  "leads": true,
+  "pedidos": null
+}

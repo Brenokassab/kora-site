@@ -1,0 +1,106 @@
+{
+  "aba": "Loja",
+  "nome": "Passo Certo Calçados",
+  "descricao": "loja de tênis e calçados, com site e loja física",
+  "endereco": "Rua Augusta, 1200, Consolação, São Paulo - SP",
+  "horarioTexto": "segunda a sábado, 10h às 20h; domingo, 12h às 18h",
+  "rotuloItens": "Produtos",
+  "itens": [
+    {
+      "nome": "Tênis Corrida Vento",
+      "preco": "R$ 349,90",
+      "detalhes": "numeração 34 a 44, preto ou azul; no 42 restam 3 pares"
+    },
+    {
+      "nome": "Tênis Casual Urbano",
+      "preco": "R$ 279,90",
+      "detalhes": "numeração 35 a 43, branco ou bege"
+    },
+    {
+      "nome": "Chuteira Society Arena",
+      "preco": "R$ 229,90",
+      "detalhes": "numeração 36 a 44"
+    },
+    {
+      "nome": "Tênis Infantil Pulo",
+      "preco": "R$ 169,90",
+      "detalhes": "numeração 24 a 34, com luz de LED"
+    },
+    {
+      "nome": "Kit 3 Meias Performance",
+      "preco": "R$ 59,90",
+      "detalhes": "tamanho único 38 a 44"
+    }
+  ],
+  "informacoes": [
+    "Frete grátis acima de R$ 299 para todo o Brasil; abaixo disso, frete fixo de R$ 19,90.",
+    "Entrega em São Paulo capital em até 2 dias úteis; outras regiões, de 3 a 8 dias úteis.",
+    "Troca grátis em até 30 dias, com o produto sem uso e na caixa.",
+    "Pagamento: Pix com 5% de desconto, cartão em até 6x sem juros ou boleto.",
+    "Retirada grátis na loja física no mesmo dia para compras feitas até 16h."
+  ],
+  "regras": [
+    "Ajude a escolher: pergunte para que o cliente vai usar e o número antes de indicar.",
+    "Para finalizar a compra, oriente a comprar pelo site ou ofereça chamar um vendedor."
+  ],
+  "agendamento": null,
+  "pedidos": [
+    {
+      "numero": "4821",
+      "status": "Em transporte",
+      "detalhe": "saiu para entrega hoje, previsão até 18h",
+      "itens": "Tênis Corrida Vento 41"
+    },
+    {
+      "numero": "4855",
+      "status": "Pagamento aprovado",
+      "detalhe": "será enviado em até 1 dia útil",
+      "itens": "Tênis Casual Urbano 38"
+    },
+    {
+      "numero": "4790",
+      "status": "Entregue",
+      "detalhe": "entregue em 26/09",
+      "itens": "Chuteira Society Arena 40"
+    }
+  ],
+  "saudacao": "Oi! Eu sou a Kora, da Passo Certo Calçados 👟\nPosso te ajudar a escolher um tênis, ver seu pedido ou explicar trocas e frete.",
+  "atalhos": [
+    "Quero um tênis de corrida",
+    "Onde está meu pedido?",
+    "Como funciona a troca?",
+    "Frete e prazo",
+    "Falar com vendedor"
+  ],
+  "faq": [
+    {
+      "k": "frete|entrega|prazo|chega",
+      "a": "Frete grátis acima de R$ 299 😉 Abaixo disso, R$ 19,90. Em São Paulo capital chega em até 2 dias úteis; nas outras regiões, de 3 a 8."
+    },
+    {
+      "k": "troca|devolu|trocar|tamanho errado",
+      "a": "A troca é grátis em até 30 dias, com o produto sem uso e na caixa. É só me dizer o número do pedido que eu te passo o passo a passo."
+    },
+    {
+      "k": "pagamento|pix|cartao|parcel|boleto",
+      "a": "Pix com 5% de desconto, cartão em até 6x sem juros ou boleto."
+    },
+    {
+      "k": "corrida|correr",
+      "a": "Para corrida, o mais pedido é o Tênis Corrida Vento, R$ 349,90, do 34 ao 44, preto ou azul. No 42 restam só 3 pares! Qual é o seu número?"
+    },
+    {
+      "k": "retir",
+      "a": "Comprando até 16h, você retira grátis na loja da Rua Augusta no mesmo dia."
+    }
+  ],
+  "cartao": [
+    "Vende e resolve pedidos",
+    "Recomenda o produto certo, informa frete e troca e responde onde está o pedido."
+  ],
+  "id": "loja",
+  "ficticia": true,
+  "assistente": "Kora",
+  "sobreKora": "Se perguntarem sobre a própria Kora (o produto, quem fez, quanto custa): explique que esta é uma demonstração; a Kora é uma atendente com IA para empresas, que atende no site e no WhatsApp, vende, agenda e tira dúvidas. Planos: Essencial R$ 149/mês + implantação R$ 790; Completo R$ 249/mês + implantação R$ 1.890. Contato: WhatsApp (11) 99660-3491 ou brenokojian0@gmail.com. Se a pessoa quiser a Kora para a empresa dela, peça nome, nome da empresa, ramo e WhatsApp e use registrar_lead com interesse 'Contratar a Kora'; depois diga que a equipe da Kora entra em contato.",
+  "leads": true
+}

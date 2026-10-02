@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Painel Kora</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{--bg:#040B11;--panel:#0A1820;--ink:#EDF7F3;--muted:#8AA8A2;--line:rgba(237,247,243,.13);--accent:#5FE3C0;--accent-ink:#03201A;--hot:#FF8A5C;--warm:#FFC56B;--cold:#8FB8FF;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;--body:"Figtree","Segoe UI",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--body)}
+main{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:36px 80px}
+h1{font:800 34px/1 var(--display);letter-spacing:-.03em;margin:0}
+h2{font:800 20px/1.2 var(--display);margin:0}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.muted{color:var(--muted)}
+.btn{border:0;cursor:pointer;padding:10px 16px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font:600 14px var(--body)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+input{border:1px solid var(--line);background:rgba(237,247,243,.04);color:var(--ink);border-radius:10px;padding:10px 12px;font:15px var(--body);min-width:0}
+.login{max-width:420px;margin:12vh auto 0;display:grid;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.stat b{display:block;font:800 30px var(--display);font-variant-numeric:tabular-nums}
+.stat span{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+section{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:18px;min-width:0}
+.shead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font:600 12px var(--body)}
+.quente{background:rgba(255,138,92,.16);color:var(--hot)}.morno{background:rgba(255,197,107,.14);color:var(--warm)}.frio{background:rgba(143,184,255,.14);color:var(--cold)}
+.wa{color:var(--accent);text-decoration:none}
+.empty{color:var(--muted);padding:18px 4px}
+.note{border:1px dashed var(--line);border-radius:12px;padding:10px 14px;color:var(--muted);margin-bottom:16px;font-size:14px}
+pre{white-space:pre-wrap;background:#02070B;border:1px solid var(--line);border-radius:12px;padding:12px;font:12px/1.5 var(--mono);color:#BFE9DC;max-height:320px;overflow:auto;margin:8px 0 0}
+@media (max-width:700px){.stats{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<main>
+  <div id="loginBox" class="login">
+    <h1>Painel Kora</h1>
+    <p class="muted" style="margin:0">Digite a chave de administrador (a variável ADMIN_KEY da Vercel).</p>
+    <form id="login" style="display:grid;gap:10px"><input id="key" type="password" autocomplete="current-password" aria-label="Chave de administrador" placeholder="Chave"><button class="btn">Entrar</button></form>
+    <p id="lerr" class="muted" role="alert"></p>
+  </div>
+
+  <div id="app" hidden>
+    <header><div><h1>Painel Kora</h1><p class="muted" style="margin:6px 0 0" id="upd"></p></div>
+      <div style="display:flex;gap:8px"><button class="btn ghost" id="reload" type="button">Atualizar</button><button class="btn ghost" id="sair" type="button">Sair</button></div></header>
+    <div class="note" id="volatile" hidden>A memória permanente (Upstash) não está configurada: os leads somem quando o servidor reinicia. Você ainda recebe todos por WhatsApp. Configure o Upstash para guardar aqui.</div>
+    <div class="stats">
+      <div class="stat"><b id="sTotal">0</b><span>Leads</span></div>
+      <div class="stat"><b id="sHot">0</b><span>Quentes</span></div>
+      <div class="stat"><b id="s7">0</b><span>Últimos 7 dias</span></div>
+      <div class="stat"><b id="sCad">0</b><span>Cadastros</span></div>
+    </div>
+    <section>
+      <div class="shead"><h2>Leads</h2><div style="display:flex;gap:8px;flex-wrap:wrap"><input id="q" placeholder="Filtrar…" aria-label="Filtrar leads"><button class="btn" id="csv" type="button">Exportar CSV</button></div></div>
+      <div class="tw"><table><thead><tr><th>Quando</th><th>Temp.</th><th>Nome</th><th>Empresa · ramo</th><th>Contato</th><th>Interesse</th><th>Origem</th></tr></thead><tbody id="tLeads"></tbody></table></div>
+    </section>
+    <section>
+      <div class="shead"><h2>Cadastros de clientes</h2><span class="muted">Copie a configuração e cole em config/empresa.json do cliente.</span></div>
+      <div id="cads"></div>
+    </section>
+  </div>
+</main>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  let KEY='',DATA={leads:[],cadastros:[]};
+  try{KEY=sessionStorage.getItem('koraAdmin')||''}catch(_){}
+  const fmt=iso=>{const d=new Date(iso);return isNaN(d)?'':d.toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})};
+  const td=(tr,text,cls)=>{const c=document.createElement('td');if(cls)c.className=cls;if(text instanceof Node)c.appendChild(text);else c.textContent=text||'';tr.appendChild(c);return c};
+  async function load(){
+    const r=await fetch('/api/leads',{headers:{'x-admin-key':KEY},cache:'no-store'}).catch(()=>null);
+    if(!r){$('lerr').textContent='Sem conexão com o servidor.';return false}
+    if(r.status===401){$('lerr').textContent='Chave incorreta.';return false}
+    if(r.status===503){$('lerr').textContent='O painel está desligado: configure ADMIN_KEY na Vercel.';return false}
+    if(!r.ok){$('lerr').textContent='Erro '+r.status+'.';return false}
+    DATA=await r.json();render();return true;
+  }
+  function render(){
+    $('loginBox').hidden=true;$('app').hidden=false;$('volatile').hidden=!!DATA.persistent;
+    $('upd').textContent='Atualizado às '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+    const L=DATA.leads||[],wk=Date.now()-7*864e5;
+    $('sTotal').textContent=L.length;$('sHot').textContent=L.filter(l=>l.temperatura==='quente').length;
+    $('s7').textContent=L.filter(l=>Date.parse(l.quando)>wk).length;$('sCad').textContent=(DATA.cadastros||[]).length;
+    const q=$('q').value.toLowerCase(),tb=$('tLeads');tb.innerHTML='';
+    const rows=L.filter(l=>!q||JSON.stringify(l).toLowerCase().includes(q));
+    if(!rows.length){const tr=document.createElement('tr');const c=td(tr,L.length?'Nenhum lead com esse filtro.':'Ainda não há leads. Eles aparecem aqui quando alguém mostra interesse no chat ou no WhatsApp.','empty');c.colSpan=7;tb.appendChild(tr);}
+    rows.forEach(l=>{const tr=document.createElement('tr');
+      td(tr,fmt(l.quando),'num');const p=document.createElement('span');p.className='pill '+(l.temperatura||'morno');p.textContent=l.temperatura||'morno';td(tr,p);
+      td(tr,l.nome);td(tr,[l.empresa,l.ramo].filter(Boolean).join(' · '));
+      const num=String(l.whatsapp||'').replace(/\D/g,'');
+      if(num){const a=document.createElement('a');a.className='wa';a.href='https://wa.me/'+(num.length<=11?'55'+num:num);a.target='_blank';a.rel='noopener';a.textContent=l.whatsapp;td(tr,a)}else td(tr,l.email);
+      td(tr,l.interesse);td(tr,(l.canal||'')+(l.perfil?' · '+l.perfil:''));tb.appendChild(tr);});
+    const box=$('cads');box.innerHTML='';
+    if(!(DATA.cadastros||[]).length){box.innerHTML='<p class="empty">Nenhum cadastro ainda. Mande o link /cadastro para o cliente preencher.</p>';}
+    (DATA.cadastros||[]).forEach(c=>{const d=document.createElement('details');d.style.borderBottom='1px solid var(--line)';d.style.padding='10px 0';
+      const s=document.createElement('summary');s.style.cursor='pointer';s.textContent=fmt(c.quando)+' · '+c.empresa+' · '+c.responsavel+' · '+(c.whatsapp||'')+' · plano '+(c.plano||'?');d.appendChild(s);
+      const pre=document.createElement('pre');pre.textContent=JSON.stringify(c.config,null,2);
+      const b=document.createElement('button');b.className='btn';b.type='button';b.textContent='Copiar configuração';b.style.marginTop='8px';
+      b.onclick=()=>{navigator.clipboard.writeText(pre.textContent).then(()=>{b.textContent='Copiado ✓';setTimeout(()=>b.textContent='Copiar configuração',1500)},()=>{const r=document.createRange();r.selectNodeContents(pre);const sel=getSelection();sel.removeAllRanges();sel.addRange(r)})};
+      d.append(pre,b);box.appendChild(d);});
+  }
+  $('q').oninput=render;
+  $('login').onsubmit=async e=>{e.preventDefault();KEY=$('key').value.trim();if(await load()){try{sessionStorage.setItem('koraAdmin',KEY)}catch(_){}}};
+  $('reload').onclick=load;
+  $('sair').onclick=()=>{KEY='';try{sessionStorage.removeItem('koraAdmin')}catch(_){};location.reload()};
+  $('csv').onclick=()=>{const cols=['quando','temperatura','nome','empresa','ramo','whatsapp','email','interesse','canal','perfil'];
+    const esc=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"';
+    const csv=[cols.join(';'),...(DATA.leads||[]).map(l=>cols.map(c=>esc(l[c])).join(';'))].join('\n');
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'}));a.download='leads-kora.csv';a.click();};
+  if(KEY)load();
+  setInterval(()=>{if(KEY&&!document.hidden)load()},60000);
+})();
+</script>
+</body>
+</html>
