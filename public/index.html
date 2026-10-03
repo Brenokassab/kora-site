@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://SEU-DOMINIO.com.br/#org", "name": "Kora", "url": "https://SEU-DOMINIO.com.br/", "logo": "https://SEU-DOMINIO.com.br/apple-touch-icon.png", "email": "brenokojian0@gmail.com", "contactPoint": {"@type": "ContactPoint", "telephone": "+55-11-99660-3491", "contactType": "sales", "areaServed": "BR", "availableLanguage": "Portuguese"}}, {"@type": "WebSite", "@id": "https://SEU-DOMINIO.com.br/#site", "url": "https://SEU-DOMINIO.com.br/", "name": "Kora", "inLanguage": "pt-BR", "publisher": {"@id": "https://SEU-DOMINIO.com.br/#org"}}, {"@type": "Service", "name": "Kora, atendente virtual com IA para empresas", "serviceType": "Atendimento, vendas e agendamento com inteligência artificial", "areaServed": {"@type": "Country", "name": "Brasil"}, "provider": {"@id": "https://SEU-DOMINIO.com.br/#org"}, "offers": [{"@type": "Offer", "name": "Essencial", "price": "149.00", "priceCurrency": "BRL", "description": "Mensalidade. Implantação R$ 790."}, {"@type": "Offer", "name": "Completo", "price": "249.00", "priceCurrency": "BRL", "description": "Mensalidade. Implantação R$ 1.890."}]}]}</script>
 <style>
 *,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
@@ -35,8 +35,8 @@
 :root{
   --bg:#040B11; --hull:#0B161E; --ink:#EDF7F3; --muted:#8AA8A2; --line:rgba(237,247,243,.13);
   --glass:rgba(4,11,17,.6); --accent:#5FE3C0; --accent-ink:#03201A; --warm:#FFB892; --paper:#E9F4EF; --paper-ink:#06201A;
-  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
-  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+  --display:"Sora","Segoe UI","Trebuchet MS",system-ui,sans-serif;
+  --body:"Manrope","Segoe UI",system-ui,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
   color-scheme:dark;
 }
@@ -82,9 +82,12 @@ p{margin:0}
 .eyebrow{font:500 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:flex;gap:10px;align-items:center}
 .ov.c .eyebrow{justify-content:center}
 .eyebrow::before{content:"";width:22px;height:1px;background:currentColor}
-.hero h1{font-size:clamp(46px,min(7.6vw,13vh),118px);font-weight:800;letter-spacing:-.055em;margin-block:18px 20px}
-.hero h1 i{font-style:normal;color:transparent;-webkit-text-stroke:1.5px var(--ink)}
-h2{font-size:clamp(38px,5.6vw,76px);font-weight:800;letter-spacing:-.04em;margin-block:16px 18px}
+.ov.hero{align-items:flex-start;padding-top:calc(104px + env(safe-area-inset-top,0px))}
+.ov.hero .box{max-width:720px}
+.hero h1 i{white-space:nowrap}
+.hero h1{font-size:clamp(44px,min(6.4vw,10.5vh),96px);font-weight:700;letter-spacing:-.045em;line-height:1;margin-block:18px 20px}
+.hero h1 i{font-style:normal;color:transparent;background:linear-gradient(100deg,var(--muted) 0%,#C9EDE3 55%,var(--accent) 100%);-webkit-background-clip:text;background-clip:text}
+h2{font-size:clamp(32px,5vw,66px);font-weight:700;letter-spacing:-.035em;margin-block:16px 18px}
 h2 em{font-style:normal;color:var(--accent)}
 .lede{color:var(--muted);font-size:18px;max-width:40ch}
 .ov.c .lede{margin-inline:auto}
@@ -109,7 +112,7 @@ h2 em{font-style:normal;color:var(--accent)}
 .ov.c .actions{justify-content:center}
 
 /* nav + progresso */
-nav{position:fixed;left:0;right:0;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px)}
+nav{position:fixed;left:0;right:0;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px);background:linear-gradient(var(--bg) 55%,rgba(4,11,17,0))}
 nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:18px;gap:16px}
 .logo{font:800 24px var(--display);letter-spacing:-.02em;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
 .logo i{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
@@ -162,7 +165,10 @@ footer .wrap{border-top:1px solid var(--line);padding-block:26px;display:flex;ju
   .ov{align-items:flex-end;padding-bottom:7vh}
   .ov .box,.ov.r .box{margin:0;max-width:none;background:var(--glass);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:22px;padding:20px}
   .hero .box{background:transparent;border:0;backdrop-filter:none;padding:0}
-  .hero{align-items:flex-start;padding-top:14vh}
+  .hero{align-items:flex-start;padding-top:calc(92px + env(safe-area-inset-top,0px))}
+  .hero h1{font-size:clamp(40px,11.5vw,64px)}
+  .hero .hint{display:none}
+  h2{font-size:clamp(30px,8vw,44px)}
   .cgrid{grid-template-columns:1fr}
   .chap span{display:none}
 }
@@ -618,7 +624,7 @@ button.btn.ghost{border:1px solid var(--line)}
     const r0=Math.min(innerWidth,innerHeight)*.24, r1=Math.hypot(innerWidth,innerHeight)*.75;
     const r=lerp(r0,r1,Math.pow(open,1.6));
     hull.style.setProperty('--r',r+'px'); rim.style.setProperty('--r',r+'px');
-    const narrowV=innerWidth<860, cx0=narrowV?50:68, cy0=narrowV?64:50;
+    const narrowV=innerWidth<860, cx0=narrowV?50:68, cy0=narrowV?84:50;
     const cx=lerp(cx0,50,open), cy=lerp(cy0,50,open);
     [hull,rim].forEach(el=>{el.style.setProperty('--cx',cx+'%');el.style.setProperty('--cy',cy+'%')});
     const hullOn=open<.999; hull.style.visibility=rim.style.visibility=hullOn?'visible':'hidden';
@@ -769,7 +775,7 @@ button.btn.ghost{border:1px solid var(--line)}
     const narrow=innerWidth<860;
     // na abertura a esfera fica centrada na janela da nave
     const op=range(p,0,.13), cz=pw(CZ,p), halfH=Math.tan(camera.fov*Math.PI/360)*cz, halfW=halfH*camera.aspect;
-    const hx=((narrow?50:68)/100-.5)*2*halfW*(1-op), hy=-((narrow?64:50)/100-.5)*2*halfH*(1-op);
+    const hx=((narrow?50:68)/100-.5)*2*halfW*(1-op), hy=-((narrow?84:50)/100-.5)*2*halfH*(1-op);
     group.position.set((narrow?0:pw(GX,p))+hx,pw(GY,p)+(narrow&&p>.2?.9:0)+hy,0);
     group.scale.setScalar((narrow?.72:1)*(p<.13?lerp(.55,1,op):1));
     const helixOrbit=range(p,.28,.44)*Math.PI*1.4, crossSpin=p>.8&&!reduce?t*.35:0, sway=reduce?0:Math.sin(t*.35)*.3;
