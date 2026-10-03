@@ -788,7 +788,7 @@ button.btn.ghost{border:1px solid var(--line)}
 
     camera.position.set(smx*.7,-smy*.5,pw(CZ,p));
     camera.rotation.z=warp*.08*Math.sin(t*2);
-    camera.lookAt(group.position.x*.25,group.position.y*.5,0);
+    camera.lookAt((group.position.x-hx)*.25,(group.position.y-hy)*.5,0);
     camera.fov=45+warp*18;camera.updateProjectionMatrix();
     if(bloom)bloom.strength=.95+warp*.9;
     // qualidade adaptativa: aparelho lento perde o brilho e depois metade das partículas
